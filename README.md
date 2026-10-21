@@ -1,5 +1,7 @@
 # Think Before You Trust
 
+> This repository builds on the work done by Allison Li during her time in the Columbia Undergraduate Math Modeling Research program ([original repo](https://github.com/allison324/think-before-you-trust)). This fork extends that research toward a category-theoretic approach to understanding AI hallucination. See [Abstract.pdf](Abstract.pdf).
+
 **Research questions:** 
 1. Does the model's self-reported confidence actually help identify which claims to verfiy under limited budget?
 2. How robust is that signal when confidence is unreliable - and is there a structural signal, which the model cannot misreport, that performs comparably?
