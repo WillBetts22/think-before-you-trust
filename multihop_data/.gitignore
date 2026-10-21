@@ -1,0 +1,4 @@
+# MuSiQue data files are too large for GitHub; fetch with download_musique.sh
+data/
+*.jsonl
+*.zip
