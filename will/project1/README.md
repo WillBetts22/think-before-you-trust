@@ -54,7 +54,7 @@ pip install -r requirements.txt
 # 3. Run the experiment (pick a provider; key from the environment)
 export GROQ_API_KEY=...            # or OPENROUTER_API_KEY / OPENAI_API_KEY / ANTHROPIC_API_KEY
 ./run_pilot.sh run                 # uses PROVIDER/MODEL from config.py
-./run_pilot.sh run anthropic claude-sonnet-5-5
+./run_pilot.sh run anthropic claude-sonnet-5-5   # any provider/model pair
 
 # 4. Optional: fill manual_label in outputs/labels_manual.csv
 #    (unsupported / invalid_inference / correct ...), then re-run:
@@ -63,6 +63,23 @@ python3 05_analyze.py
 
 Every model call is cached in `cache/`, so re-running a stage after a crash or
 a rate-limit hit only pays for calls that haven't been made yet.
+
+## Daily job (free-tier friendly)
+
+`daily_job.py` runs Stages B and C until the day's budget runs out. The budget
+is either `DAILY_MAX_API_CALLS` or the provider's own daily quota. The next day
+it replays finished work from the cache and continues where it stopped. Once
+everything is done, it runs Stages D and E, writes `outputs/DONE`, and sends a
+macOS notification. Progress is logged to `outputs/daily_log.txt`.
+
+- **Settings and key:** `~/.config/tbyt/env`, which is outside the repo so the key is never committed.
+- **Schedule:** the launchd agent `~/Library/LaunchAgents/com.wbetts.tbyt-pilot.plist` runs `run_daily.sh` every day at 09:00. If the Mac is asleep then, it runs on wake.
+
+```bash
+launchctl kickstart gui/$(id -u)/com.wbetts.tbyt-pilot     # run now
+tail -f outputs/daily_log.txt                              # watch progress
+launchctl bootout gui/$(id -u)/com.wbetts.tbyt-pilot       # stop / uninstall
+```
 
 ## What gets measured per question
 

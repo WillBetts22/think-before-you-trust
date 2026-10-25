@@ -42,7 +42,7 @@ import config
 from common import (ABSTAIN, INVALID, distribution, extract_json_object,
                     load_included_tasks, normalize, read_jsonl,
                     save_config_snapshot, save_usage, tv_distance, write_jsonl)
-from llm import LLM
+from llm import LLM, BudgetExhausted
 from prompts import SYSTEM, answer_prompt, compose, fill
 
 N = config.SAMPLES_PER_ROUTE
@@ -150,4 +150,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BudgetExhausted as e:
+        # Everything done so far is cached; re-running resumes for free.
+        print(f"Stopped for today: {e}")
+        raise SystemExit(75)

@@ -8,6 +8,7 @@ back to the exact settings that produced it. Change values here, not inside
 the stage scripts.
 """
 
+import os
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent
@@ -27,8 +28,9 @@ SELECTION_SEED = 0
 
 # ── model (Stages B and C) ───────────────────────────────────────────────────
 # provider: "groq" | "openrouter" | "openai" | "anthropic" | "mock"
-PROVIDER = "groq"
-MODEL = "llama-3.3-70b-versatile"
+# TBYT_PROVIDER / TBYT_MODEL override these (used by the daily job's env file).
+PROVIDER = os.environ.get("TBYT_PROVIDER", "groq")
+MODEL = os.environ.get("TBYT_MODEL", "openai/gpt-oss-120b")
 TEMPERATURE = 0.7          # > 0 so repeated samples form a distribution
 MAX_TOKENS = 512
 # "open_book": every call gets the same 20 MuSiQue paragraphs (evidence +
@@ -50,7 +52,7 @@ F1_CORRECT_THRESHOLD = 0.8   # token-F1 against gold+aliases to auto-label "corr
 CV_FOLDS = 5
 BOOTSTRAP_ITERS = 2000
 
-OUTPUT_DIR = PROJECT_DIR / "outputs"
+OUTPUT_DIR = Path(os.environ.get("TBYT_OUTPUT_DIR", PROJECT_DIR / "outputs"))
 CACHE_DIR = PROJECT_DIR / "cache"
 
 

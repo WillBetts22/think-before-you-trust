@@ -26,6 +26,7 @@ import random
 import re
 import time
 from dataclasses import dataclass
+from datetime import date
 
 import requests
 
@@ -37,6 +38,25 @@ OPENAI_COMPATIBLE = {
     "openai": ("https://api.openai.com/v1/chat/completions", "OPENAI_API_KEY"),
 }
 ANTHROPIC_URL = "https://api.anthropic.com/v1/messages"
+
+
+class BudgetExhausted(Exception):
+    """Today's call budget (ours or the provider's daily quota) is used up.
+
+    Stages let this propagate; daily_job.py catches it and resumes tomorrow,
+    when everything already done is served from the cache for free.
+    """
+
+
+def _parse_wait(msg: str) -> float | None:
+    """Seconds from 'try again in 1h2m3.4s' / '7m12s' / '850ms' style messages."""
+    m = re.search(r"try again in ((?:[\d.]+(?:h|ms|m|s))+)", msg)
+    if not m:
+        return None
+    total = 0.0
+    for val, unit in re.findall(r"([\d.]+)(h|ms|m|s)", m.group(1)):
+        total += float(val) * {"h": 3600, "m": 60, "s": 1, "ms": 0.001}[unit]
+    return total
 
 
 @dataclass
@@ -62,6 +82,14 @@ class LLM:
         # running totals, for the cost accounting the abstract requires
         self.calls = 0
         self.api_calls = 0
+        # Daily cap on *new* API calls, shared across stages and restarts by
+        # counting cache files written today. 0 / unset = no cap.
+        self.daily_cap = int(os.environ.get("DAILY_MAX_API_CALLS", "0") or 0)
+        today = date.today()
+        self.calls_today = sum(
+            1 for f in self.cache_dir.glob("*.json")
+            if date.fromtimestamp(f.stat().st_mtime) == today
+        )
         self.prompt_tokens = 0
         self.completion_tokens = 0
 
@@ -89,7 +117,10 @@ class LLM:
             c = Completion(d["text"], d["prompt_tokens"], d["completion_tokens"],
                            d["latency_s"], cached=True)
         else:
+            if self.daily_cap and self.calls_today >= self.daily_cap:
+                raise BudgetExhausted(f"daily cap of {self.daily_cap} API calls reached")
             c = self._call_with_retries(system, user, sample_index)
+            self.calls_today += 1
             path.write_text(json.dumps({
                 "system": system, "user": user, "sample_index": sample_index,
                 "temperature": self.temperature, "model": self.model,
@@ -107,14 +138,17 @@ class LLM:
                 "completion_tokens": self.completion_tokens}
 
     # ── internals ───────────────────────────────────────────────────────────
-    def _call_with_retries(self, system, user, sample_index, max_retries=5) -> Completion:
+    def _call_with_retries(self, system, user, sample_index, max_retries=10) -> Completion:
         for attempt in range(1, max_retries + 1):
             try:
                 return self._call(system, user, sample_index)
             except Exception as e:
                 msg = str(e)
-                m = re.search(r"try again in ([\d.]+)s", msg)
-                wait = float(m.group(1)) + 1 if m else min(60, 2 ** attempt)
+                wait = _parse_wait(msg)
+                # A long wait means a per-day quota, not a per-minute one: stop for today.
+                if (wait is not None and wait > 300) or re.search(r"per day|\bTPD\b|\bRPD\b", msg):
+                    raise BudgetExhausted(f"provider daily limit: {msg[:200]}")
+                wait = wait + 1 if wait is not None else min(60, 2 ** attempt)
                 print(f"    API error (attempt {attempt}/{max_retries}): {msg[:200]} — retry in {wait:.0f}s")
                 time.sleep(wait)
         raise RuntimeError("API call failed after retries")
@@ -145,7 +179,10 @@ class LLM:
                    "messages": [{"role": "system", "content": system},
                                 {"role": "user", "content": user}]}
         if "gpt-oss" in self.model.lower():
-            payload["reasoning"] = {"effort": "low"}
+            if self.provider == "groq":
+                payload["reasoning_effort"] = "low"
+            else:
+                payload["reasoning"] = {"effort": "low"}
         resp = requests.post(self.url, headers=headers, json=payload, timeout=180)
         if resp.status_code != 200:
             try:

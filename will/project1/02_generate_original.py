@@ -21,7 +21,7 @@ from pathlib import Path
 import config
 from common import (INVALID, extract_json_object, load_included_tasks,
                     save_config_snapshot, save_usage, write_jsonl)
-from llm import LLM
+from llm import LLM, BudgetExhausted
 from prompts import SYSTEM, original_prompt
 
 
@@ -72,4 +72,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BudgetExhausted as e:
+        # Everything done so far is cached; re-running resumes for free.
+        print(f"Stopped for today: {e}")
+        raise SystemExit(75)
