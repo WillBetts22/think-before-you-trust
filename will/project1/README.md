@@ -81,6 +81,63 @@ tail -f outputs/daily_log.txt                              # watch progress
 launchctl bootout gui/$(id -u)/com.wbetts.tbyt-pilot       # stop / uninstall
 ```
 
+## OpenAI pipeline (separate from the Groq run)
+
+`run_openai.sh` runs the same Stages B–E against the OpenAI API with no daily
+limit and questions probed in parallel. It shares the code but none of the
+data: it writes to `outputs_openai/`, caches under `cache/openai/<model>/`,
+reads its key from `~/.config/tbyt/openai.env`, and never touches `outputs/`,
+`daily_job.py` or `STATUS.md`.
+
+```bash
+./run_openai.sh check                  # key works; lists the chat models it can use
+./run_openai.sh replicate              # task set "pilot100" = the Groq pilot's 100 audited questions
+./run_openai.sh smoke                  # 3 questions end to end, to check settings
+./run_openai.sh run pilot100           # Stages B-E with TBYT_MODEL
+./run_openai.sh build scale300 300 2,3,4   # a new, larger task set (audit it, then `run`)
+
+# any setting can be varied per run; each combination gets its own run folder
+TBYT_MODEL=gpt-4.1-mini TBYT_SAMPLES_PER_ROUTE=5 TBYT_CONDITION=closed_book ./run_openai.sh run pilot100
+```
+
+Runs land in `outputs_openai/runs/<set>__<model>__<condition>__n<N>/`. Task
+sets are model-independent, so every model is scored on identical questions.
+OpenAI reasoning models (`gpt-5*`, `o*`) only accept temperature 1 and count
+hidden reasoning against the token cap: set `TBYT_TEMPERATURE=1` and
+`TBYT_MAX_TOKENS=4000`. Mixing temperatures between models is a confound, so
+compare them with that in mind.
+
+## Budget: tying the probe to the parent project's verification budget
+
+The parent project (`dag_codes/`, Allison Li) asks which claims to verify
+under a fixed number of checks. A check reveals one claim's truth, a caught
+false claim quarantines everything downstream of it, and the score is
+`reliability = 1 - undetected_false / total_claims`. Its headline budget is
+20 checks on an 80-claim DAG (25%), swept over 5 to 50 checks.
+
+`06_budget.py` (Stage F) runs that exact evaluation on real chains. Each
+MuSiQue question is a path step1 → … → final, labelled by Stage D.
+Strategies spend 25% of all claims as checks, and the budget is swept over the
+same 5/80 to 50/80 shares. Random is the floor and Oracle the ceiling, as in
+`dag_model.py`. The strategies are her
+uncertainty-first and dependency-aware (`p_false · D`) rules, self-consistency,
+composition (`delta_comp · D`), and the H1 comparison in budget terms: a learned
+`p_false` from the baseline features vs. the same plus `delta_comp`.
+
+**Step 1 (now):** fixed budgets. Every question gets the full probe, so the
+probe's LLM calls are a separate, fixed cost (reported in `budget.json`). The
+question is whether, at the same number of checks, composition-informed
+selection leaves fewer false claims undetected.
+
+**Step 2 (only if step 1 is positive): an allocation problem.** Put probes and
+checks in one budget `B = c · checks + calls`, where `c` is the cost of one check
+in LLM-call units (a human or retrieval check costs far more than a call). The
+choices are which questions to probe, how many samples per route (`N`), and how
+many checks remain. Because every sample is cached, the reliability-vs-cost
+frontier can be computed offline for any `c` from the N=3/5/10 runs: subsample
+`N`, probe only the questions whose confidence is ambiguous, and compare with
+spending the same budget on extra checks.
+
 ## What gets measured per question
 
 - **Original output (Stage B):** the final answer, an answer per step, and a

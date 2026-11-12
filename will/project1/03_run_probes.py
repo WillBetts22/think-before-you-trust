@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import config
@@ -106,10 +107,7 @@ def main():
     original = {r["id"]: r for r in read_jsonl(out / "original.jsonl")}
     batches = 2 if config.SAME_ROUTE_CONTROL else 1
 
-    rows = []
-    for i, t in enumerate(tasks, 1):
-        if t["id"] not in original:
-            continue
+    def probe(t: dict) -> dict:
         calls_before = llm.calls
         n, steps, orig = t["n_hops"], t["steps"], original[t["id"]]
         regions = []
@@ -135,13 +133,34 @@ def main():
         ids = [normalize(a) for a in ordinary]
         ordinary_disagreement = 1 - Counter(ids).most_common(1)[0][1] / len(ids)
 
-        rows.append({"id": t["id"], "n_hops": n, "regions": regions,
-                     "ordinary_samples": ordinary,
-                     "ordinary_disagreement": ordinary_disagreement,
-                     "calls_incl_cached": llm.calls - calls_before})
-        scored = [r["delta_comp"] for r in regions if "delta_comp" in r]
-        print(f"  [{i}/{len(tasks)}] {t['id']}: delta_comp={['%.2f' % d for d in scored]} "
-              f"ordinary={ordinary_disagreement:.2f} calls={rows[-1]['calls_incl_cached']}")
+        # calls_incl_cached is only exact with WORKERS=1 (threads share the counter)
+        return {"id": t["id"], "n_hops": n, "regions": regions,
+                "ordinary_samples": ordinary,
+                "ordinary_disagreement": ordinary_disagreement,
+                "calls_incl_cached": llm.calls - calls_before}
+
+    def report(i: int, row: dict) -> None:
+        scored = [r["delta_comp"] for r in row["regions"] if "delta_comp" in r]
+        print(f"  [{i}/{len(tasks)}] {row['id']}: delta_comp={['%.2f' % d for d in scored]} "
+              f"ordinary={row['ordinary_disagreement']:.2f} calls={row['calls_incl_cached']}",
+              flush=True)
+
+    todo = [(i, t) for i, t in enumerate(tasks, 1) if t["id"] in original]
+    rows = []
+    if config.WORKERS <= 1:
+        for i, t in todo:
+            rows.append(probe(t))
+            report(i, rows[-1])
+    else:
+        # Each question's samples are fixed by (prompt, sample_index), so running
+        # questions concurrently gives the same cache entries as running them in turn.
+        with ThreadPoolExecutor(config.WORKERS) as pool:
+            futures = {pool.submit(probe, t): i for i, t in todo}
+            done = {}
+            for f in as_completed(futures):
+                done[futures[f]] = f.result()   # re-raises BudgetExhausted etc.
+                report(futures[f], done[futures[f]])
+        rows = [done[i] for i, _ in todo]
 
     write_jsonl(out / "probes.jsonl", rows)
     save_usage(out, "C", {"provider": args.provider, "model": args.model, **llm.usage()})

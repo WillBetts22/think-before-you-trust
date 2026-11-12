@@ -86,8 +86,11 @@ def distribution(answers: list[str]) -> dict[str, float]:
 
 def tv_distance(p: dict[str, float], q: dict[str, float]) -> float:
     """d_TV(P, Q) = 1/2 * sum_a |P(a) - Q(a)| over the union of answer ids."""
-    support = set(p) | set(q)
-    return 0.5 * sum(abs(p.get(a, 0.0) - q.get(a, 0.0)) for a in support)
+    # sorted so the float sum is identical in every process (set order varies with
+    # hash randomisation, which made exact ties like 1.0 vs 0.9999999999999999 flip)
+    support = sorted(set(p) | set(q))
+    # rounded so equal distances are exact ties (e.g. every fully disjoint pair is 1.0)
+    return round(0.5 * sum(abs(p.get(a, 0.0) - q.get(a, 0.0)) for a in support), 10)
 
 
 def mode_answer(answers: list[str]) -> str | None:

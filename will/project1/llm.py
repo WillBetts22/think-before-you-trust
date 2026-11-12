@@ -24,6 +24,7 @@ import json
 import os
 import random
 import re
+import threading
 import time
 from dataclasses import dataclass
 from datetime import date
@@ -38,6 +39,10 @@ OPENAI_COMPATIBLE = {
     "openai": ("https://api.openai.com/v1/chat/completions", "OPENAI_API_KEY"),
 }
 ANTHROPIC_URL = "https://api.anthropic.com/v1/messages"
+
+# OpenAI reasoning models: they take max_completion_tokens (which also covers
+# hidden reasoning tokens) and reasoning_effort, and reject any temperature but 1.
+OPENAI_REASONING = re.compile(r"^(o\d|gpt-5)", re.I)
 
 
 class BudgetExhausted(Exception):
@@ -92,6 +97,17 @@ class LLM:
         )
         self.prompt_tokens = 0
         self.completion_tokens = 0
+        # Stage C can call complete() from several threads (config.WORKERS)
+        self._lock = threading.Lock()
+
+        self.openai_reasoning = provider == "openai" and bool(OPENAI_REASONING.match(model))
+        # gpt-5.1+ accept any temperature when reasoning_effort is "none"; with reasoning
+        # on (and for gpt-5 / o-series always) only the default temperature of 1 works.
+        self.send_temperature = not self.openai_reasoning or config.REASONING_EFFORT == "none"
+        if not self.send_temperature and temperature != 1:
+            raise SystemExit(f"{model} with reasoning only accepts temperature 1; set TBYT_TEMPERATURE=1 "
+                             f"(and a larger TBYT_MAX_TOKENS, since reasoning tokens count), "
+                             f"or TBYT_REASONING_EFFORT=none on gpt-5.1 and later.")
 
         if provider in OPENAI_COMPATIBLE:
             self.url, key_env = OPENAI_COMPATIBLE[provider]
@@ -111,25 +127,32 @@ class LLM:
             [system, user, self.temperature, self.max_tokens, sample_index]
         ).encode()).hexdigest()
         path = self.cache_dir / f"{key}.json"
-        self.calls += 1
+        with self._lock:
+            self.calls += 1
         if path.exists():
             d = json.loads(path.read_text())
             c = Completion(d["text"], d["prompt_tokens"], d["completion_tokens"],
                            d["latency_s"], cached=True)
         else:
-            if self.daily_cap and self.calls_today >= self.daily_cap:
-                raise BudgetExhausted(f"daily cap of {self.daily_cap} API calls reached")
+            with self._lock:
+                if self.daily_cap and self.calls_today >= self.daily_cap:
+                    raise BudgetExhausted(f"daily cap of {self.daily_cap} API calls reached")
             c = self._call_with_retries(system, user, sample_index)
-            self.calls_today += 1
-            path.write_text(json.dumps({
+            # write to a temp file and rename, so a crash never leaves a half-written cache entry
+            tmp = path.with_suffix(f".tmp{threading.get_ident()}")
+            tmp.write_text(json.dumps({
                 "system": system, "user": user, "sample_index": sample_index,
                 "temperature": self.temperature, "model": self.model,
                 "text": c.text, "prompt_tokens": c.prompt_tokens,
                 "completion_tokens": c.completion_tokens, "latency_s": c.latency_s,
             }))
-            self.api_calls += 1
-        self.prompt_tokens += c.prompt_tokens
-        self.completion_tokens += c.completion_tokens
+            tmp.replace(path)
+            with self._lock:
+                self.calls_today += 1
+                self.api_calls += 1
+        with self._lock:
+            self.prompt_tokens += c.prompt_tokens
+            self.completion_tokens += c.completion_tokens
         return c
 
     def usage(self) -> dict:
@@ -139,15 +162,28 @@ class LLM:
 
     # ── internals ───────────────────────────────────────────────────────────
     def _call_with_retries(self, system, user, sample_index, max_retries=10) -> Completion:
-        for attempt in range(1, max_retries + 1):
+        attempt = 0
+        throttled = 0          # short per-minute rate-limit waits; these don't use up retries
+        while attempt < max_retries:
+            attempt += 1
             try:
                 return self._call(system, user, sample_index)
             except Exception as e:
                 msg = str(e)
+                # out of credit or a bad key: retrying won't help
+                if re.search(r"insufficient_quota|exceeded your current quota", msg, re.I):
+                    raise BudgetExhausted(f"provider quota/billing: {msg[:200]}")
+                if msg.startswith(("401:", "403:", "404:")):
+                    raise SystemExit(f"API rejected the request: {msg[:300]}")
                 wait = _parse_wait(msg)
                 # A long wait means a per-day quota, not a per-minute one: stop for today.
                 if (wait is not None and wait > 300) or re.search(r"per day|\bTPD\b|\bRPD\b", msg):
                     raise BudgetExhausted(f"provider daily limit: {msg[:200]}")
+                if msg.startswith("429:") and wait is not None and wait < 60 and throttled < 500:
+                    throttled += 1
+                    attempt -= 1
+                    time.sleep(wait + random.uniform(0.2, 2.0))   # jitter so workers don't retry in lockstep
+                    continue
                 wait = wait + 1 if wait is not None else min(60, 2 ** attempt)
                 print(f"    API error (attempt {attempt}/{max_retries}): {msg[:200]} — retry in {wait:.0f}s")
                 time.sleep(wait)
@@ -178,7 +214,14 @@ class LLM:
                    "max_tokens": self.max_tokens,
                    "messages": [{"role": "system", "content": system},
                                 {"role": "user", "content": user}]}
-        if "gpt-oss" in self.model.lower():
+        if self.provider == "openai":
+            # OpenAI replaced max_tokens with max_completion_tokens (works for every model)
+            payload["max_completion_tokens"] = payload.pop("max_tokens")
+            if self.openai_reasoning:
+                if not self.send_temperature:
+                    del payload["temperature"]      # only the default (1) is allowed
+                payload["reasoning_effort"] = config.REASONING_EFFORT
+        elif "gpt-oss" in self.model.lower():
             if self.provider == "groq":
                 payload["reasoning_effort"] = "low"
             else:

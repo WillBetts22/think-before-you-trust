@@ -3,3 +3,4 @@ outputs/
 outputs_smoke/
 cache/
 __pycache__/
+outputs_openai/

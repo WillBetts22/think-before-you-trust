@@ -31,19 +31,29 @@ SELECTION_SEED = 0
 # TBYT_PROVIDER / TBYT_MODEL override these (used by the daily job's env file).
 PROVIDER = os.environ.get("TBYT_PROVIDER", "groq")
 MODEL = os.environ.get("TBYT_MODEL", "openai/gpt-oss-120b")
-TEMPERATURE = 0.7          # > 0 so repeated samples form a distribution
-MAX_TOKENS = 512
+# TBYT_TEMPERATURE / TBYT_MAX_TOKENS / TBYT_CONDITION / TBYT_SAMPLES_PER_ROUTE /
+# TBYT_WORKERS override the values below; the defaults are what the Groq pilot
+# runs with. Each stage's config snapshot records the values actually used.
+TEMPERATURE = float(os.environ.get("TBYT_TEMPERATURE", "0.7"))  # > 0 so repeated samples form a distribution
+# For OpenAI reasoning models (gpt-5*, o*) this cap also covers hidden reasoning
+# tokens, so give them more room (e.g. TBYT_MAX_TOKENS=4000).
+MAX_TOKENS = int(os.environ.get("TBYT_MAX_TOKENS", "512"))
+# OpenAI reasoning models only: "none" (gpt-5.1+, allows any temperature) | "minimal" | "low" | "medium" | "high".
+REASONING_EFFORT = os.environ.get("TBYT_REASONING_EFFORT", "low")
 # "open_book": every call gets the same 20 MuSiQue paragraphs (evidence +
 #              distractors, supporting flags hidden) — the paper's primary condition.
 # "closed_book": no paragraphs; answers come from model knowledge.
-CONDITION = "open_book"
+CONDITION = os.environ.get("TBYT_CONDITION", "open_book")
 
 # ── composition probes (Stage C) ─────────────────────────────────────────────
-SAMPLES_PER_ROUTE = 3      # the paper's 3 direct + 3x(f then g) = 9 calls per test
+SAMPLES_PER_ROUTE = int(os.environ.get("TBYT_SAMPLES_PER_ROUTE", "3"))  # the paper's 3 direct + 3x(f then g) = 9 calls per test
 # Same-route control: draw a second independent batch per route so we can
 # measure ordinary sampling disagreement (direct-vs-direct, step-vs-step).
 # Doubles probe cost; required for H1's "beyond ordinary disagreement" claim.
 SAME_ROUTE_CONTROL = True
+# Questions probed in parallel in Stage C. 1 = one at a time (the Groq daily
+# job, which must stay under a per-day quota). Results don't depend on it.
+WORKERS = int(os.environ.get("TBYT_WORKERS", "1"))
 
 # ── labeling (Stage D) ───────────────────────────────────────────────────────
 F1_CORRECT_THRESHOLD = 0.8   # token-F1 against gold+aliases to auto-label "correct"
