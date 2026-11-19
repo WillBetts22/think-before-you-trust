@@ -86,7 +86,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** AUROC of exact-Kleisli vs plug-in vs N=3 sampled estimator
 - **Closest prior work:** press2023compositionality, wang2023selfconsistency
 - **Novelty risk:** Low-medium: the estimator choice is rarely discussed.
-- **Scores:** F5 N3 S3 C5 T5 → **23.5**  · **Pilot:** Pilot B computes the exact composite.
+- **Scores:** F5 N3 S3 C5 T5 → **23.5**  · **Pilot:** Pilot B: exact Kleisli beats N=10 beats N=3 sampled estimator once the model is competent.
 
 <a id="a3"></a>
 #### A3. Functoriality in the quotient category of meanings
@@ -116,7 +116,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** ΔAUROC as a function of parameter count
 - **Closest prior work:** press2023compositionality, kadavath2022know, bottman2026operadic
 - **Novelty risk:** Medium: OC reports cross-model correlation, not incremental value by size.
-- **Scores:** F3 N3 S4 C4 T3 → **18.5**  · **Pilot:** Pilot B's checkpoints are a toy analogue.
+- **Scores:** F3 N3 S4 C4 T3 → **18.5**  · **Pilot:** Pilot B checkpoints: in the toy the signal GROWS with competence (needs a reliable stepwise route).
 
 <a id="a6"></a>
 #### A6. Overlapping-region defect attribution (H2)
@@ -136,7 +136,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** fraction of errors with delta below threshold; detector recall ceiling
 - **Closest prior work:** lin2022truthfulqa, fluri2023superhuman, paleka2025forecasters
 - **Novelty risk:** Low-medium: noted qualitatively, rarely quantified.
-- **Scores:** F5 N3 S5 C4 T5 → **24.5**  · **Pilot:** Pilots A and B both measure it.
+- **Scores:** F5 N3 S5 C4 T5 → **24.5**  · **Pilot:** Pilot A assumes it (consistent errors rank below true claims, AUROC 0.28); pilot B toy has none, so a toy needs planted systematic errors.
 
 <a id="a8"></a>
 #### A8. Amortised functoriality probe
@@ -156,7 +156,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** relative Frobenius defect; nearest-neighbour accuracy of the composed map vs the direct map
 - **Closest prior work:** hernandez2024linearity, christ2025structure
 - **Novelty risk:** Low: LRE composition not found tested.
-- **Scores:** F4 N4 S3 C4 T4 → **21.0**  · **Pilot:** Pilot B (E3), toy version.
+- **Scores:** F4 N4 S3 C4 T4 → **21.0**  · **Pilot:** Pilot B E3: uninformative null (random-permutation relations are not linear); needs a pretrained LM.
 
 
 ### Family P: Markov categories & information
@@ -295,7 +295,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** dagger defect; ΔAUROC over delta_comp+conf
 - **Closest prior work:** berglund2024reversal, allenzhu2025physics32
 - **Novelty risk:** Medium: reversal is measured as a curse, not used as a detector.
-- **Scores:** F5 N3 S4 C5 T5 → **24.5**  · **Pilot:** Pilot B (E2) in a toy world.
+- **Scores:** F5 N3 S4 C5 T5 → **24.5**  · **Pilot:** Pilot B E2: reversal curse reproduced; 1-round-trip adds +0.017 to +0.051 AUROC where the converse was learned, anti-signal where not.
 
 <a id="d2"></a>
 #### D2. Round-trip consistency under controlled training
@@ -305,7 +305,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** AUROC of 1-roundtrip for forward error by condition
 - **Closest prior work:** berglund2024reversal
 - **Novelty risk:** Low.
-- **Scores:** F5 N3 S3 C4 T5 → **22.5**  · **Pilot:** Pilot B (E2).
+- **Scores:** F5 N3 S3 C4 T5 → **22.5**  · **Pilot:** Pilot B E2 (see D1).
 
 <a id="d3"></a>
 #### D3. Is composition dagger-compatible? (g∘f)† = f†∘g†
@@ -338,7 +338,7 @@ Each avenue is tied to one categorical concept (see [05_category_theory_primer.m
 - **Measurable quantity:** reliability at budget k (dag_codes evaluate())
 - **Closest prior work:** hansen2019spectral, kim2025holograph, huntsman2024sheaves
 - **Novelty risk:** Medium-low.
-- **Scores:** F5 N4 S4 C5 T5 → **25.5**  · **Pilot:** Pilot A (synthetic).
+- **Scores:** F5 N4 S4 C5 T5 → **25.5**  · **Pilot:** Pilot A (synthetic): about equal to the descendant-count-only baseline; helps only for large fabrications/budgets or when confidence is anti-informative.
 
 <a id="s3"></a>
 #### S3. Signalling vs H^1: two kinds of inconsistency

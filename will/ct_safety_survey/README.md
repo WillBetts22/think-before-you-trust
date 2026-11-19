@@ -72,7 +72,21 @@ Designs for #1–#5 are in [03_experiment_designs.md](03_experiment_designs.md).
 
 ## Pilot results (preliminary; simulators and tiny from-scratch models only)
 
-PILOT_RESULTS_PLACEHOLDER
+Two pilots, four experiments, CPU only, no API keys. Full details, figures and caveats are in each pilot's README. Every number comes from a committed `results/summary.md`.
+
+| Pilot / experiment | Question | Result | Verdict |
+|---|---|---|---|
+| **A. Sheaf inconsistency on claim DAGs** ([README](pilots/sheaf_dag/README.md)) — `dag_codes` DAGs + an *assumed* observation model, 200 DAGs/cell | Does a sheaf-Laplacian repair score, as `p_false × D`, raise reliability at budget 20/80? Do DAG cross-edges beat the tree (chain-only) version? | At the base setting, Sheaf-DAG×D 0.932 vs **descendant-count-only 0.934** (Δ −0.002 [−0.006, +0.002]). It beats `D`-only only for large fabrications (+0.009 [+0.006, +0.012] at a=4σ) or large budgets (0.988 vs 0.971 at 40 checks, overconfident mode). When confidence is anti-informative it beats Conf×D (+0.014 [+0.008, +0.020]) and the repo's dependency-aware rule (+0.113). DAG vs tree: within ±0.003 everywhere. | **Mostly null.** Structure dominates the budget metric. Consistently-wrong claims score *below* true claims (node AUROC 0.28): consistency finds the boundaries of false regions, not their interiors. |
+| **B-E1. Functoriality (exact Kleisli `delta_comp`)** ([README](pilots/synthetic_kg/README.md)) — tiny transformer, synthetic KG, 3 seeds | Does `delta_comp` predict wrong direct answers beyond confidence/entropy/self-consistency? | Weak checkpoint: **anti-signal** (AUROC 0.32), because the stepwise route is the worse one. Competent checkpoints: AUROC 0.93, adding **+0.028 to +0.051** over the baseline. Will's N=3 estimator adds +0.019 to +0.035 over baseline + self-consistency (all CIs exclude 0). | **Positive in the toy, with a twist.** The signal needs a competent stepwise route, so it grows with capability here. Exact Kleisli > N=10 > N=3 samples. |
+| **B-E1b/c. Blind spot and generalisation** | Are there consistent-but-wrong answers? Does the model compose unseen pairs? | Error rate among route-agreeing queries: **0.000** (errors are independent in this toy). Unseen compositions: direct error 99.9–100%. | Toy cannot study the blind spot (it needs planted systematic errors). No out-of-distribution composition. |
+| **B-E2. Dagger / reversal** | Reversal curse? Is round-trip consistency a detector? | Reverse accuracy on never-reversed pairs **0.000–0.001** (chance 0.001) vs 0.94 trained. Where the converse was learned, 1−round-trip adds **+0.017 to +0.051** AUROC over forward confidence + entropy; where it was not, it is an anti-signal. | **Reversal curse reproduced.** The dagger test works only for facts held in both directions. |
+| **B-E3. Linear-relational functor** | Is `A_{r2}A_{r1} ≈ A_{r1∘r2}` for linear relation maps? | Linear maps do not even fit single relations (faithfulness ≈ chance); composition defect ≈ null. | **Uninformative null** (random-permutation relations have no geometry). Needs a pretrained LM. |
+
+**Take-aways for Will.**
+1. A static consistency score is not automatically a better *budget* signal than graph structure. Allocation (Design 2) needs adaptive, boundary-aware policies and real branching data.
+2. `delta_comp` measures *disagreement*, not *which route is wrong*. Its value depends on the stepwise route being reliable, which is something to measure per model (e.g. stepwise vs direct accuracy) before interpreting H1.
+3. Compute the stepwise distribution as a Kleisli mixture, and use more than 3 samples if you can.
+4. Every consistency signal is blind to consistent-but-wrong errors. Measure that blind spot (Design 5) rather than hope it is small.
 
 ## Recommended next steps for Will
 

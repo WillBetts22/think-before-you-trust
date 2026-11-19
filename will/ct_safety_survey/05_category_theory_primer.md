@@ -72,7 +72,7 @@ A **limit** of a diagram is the universal object that maps consistently into all
 A **monoidal category** has a tensor `⊗` for parallel composition. **String diagrams** are its graphical calculus, and equal diagrams denote equal morphisms.
 
 * **Example.** Reasoning pipelines, tool calls and agents compose both in sequence (`∘`) and in parallel (`⊗`). String diagrams are the lingua franca of open games, Markov categories and DisCoCat. Safety question: which properties are preserved by `∘` and `⊗`? Spera (`spera2026noncomp`) argues safety is not.
-* **Learn:** 7S ch. 4 (resource theories, wiring diagrams); Piedeleu & Zanasi, "An Introduction to String Diagrams for Computer Scientists" (arXiv:2305.08768; not otherwise cited here).
+* **Learn:** 7S ch. 4 (resource theories, wiring diagrams); Piedeleu & Zanasi, "An Introduction to String Diagrams for Computer Scientists" (a standard tutorial; not otherwise cited or verified here).
 
 ## 9. Markov categories (categorical probability)
 
