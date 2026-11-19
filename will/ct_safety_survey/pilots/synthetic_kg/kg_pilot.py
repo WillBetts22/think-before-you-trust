@@ -187,13 +187,15 @@ def h1_gain(X_base, x_extra, y, seed=0, n_boot=1000):
 
 
 def sample_counts(p, n, rng):
-    """Empirical distribution of n samples from each row of p."""
+    """Empirical distribution of n samples from each row of p (inverse-CDF sampling per row)."""
     c = np.cumsum(p, 1)
+    c[:, -1] = 1.0
     u = rng.random((p.shape[0], n))
-    idx = np.minimum((u[:, :, None] > c[:, None, :]).sum(-1), p.shape[1] - 1)
+    idx = np.stack([np.searchsorted(c[i], u[i], side="right") for i in range(p.shape[0])])
+    idx = np.minimum(idx, p.shape[1] - 1)
     emp = np.zeros_like(p)
-    for j in range(n):
-        emp[np.arange(len(p)), idx[:, j]] += 1.0 / n
+    rows = np.repeat(np.arange(p.shape[0]), n)
+    np.add.at(emp, (rows, idx.ravel()), 1.0 / n)
     return emp, idx
 
 

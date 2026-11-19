@@ -136,7 +136,7 @@ A **(Grothendieck) fibration** `p : E → B` organises "objects over a base", e.
 
 | Concept | Avenues in [02_avenues_catalog.md](02_avenues_catalog.md) |
 |---|---|
-| Functor / composition | A1–A8 |
+| Functor / composition | A1–A9 |
 | Markov categories / Kleisli | A2, A3, A5, P1–P5 |
 | Enriched / metric (lax) functors | A4, A6 |
 | Natural transformations | N1–N7 |
