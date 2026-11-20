@@ -1,0 +1,2663 @@
+{
+ "grid": [
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 0.5,
+    "q_consistent": 0.9,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.9338477627060675,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9108047635601606,
+    "Sheaf-DAG (no D)": 0.7586497762708231,
+    "Sheaf-DAG x D": 0.9123975324888355,
+    "Sheaf-DAG+Conf x D": 0.935827626396581,
+    "Sheaf edge->upstream x D": 0.9222854887192493,
+    "Naive incident energy x D": 0.9296212015926212,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11569964755764531,
+    "Uncertainty (repo)": 0.09188953391197562,
+    "Dependency-aware (repo)": 0.12058724351317605,
+    "D only (structure)": 0.06334614063493917,
+    "Conf x D": 0.043280742292783274,
+    "Sheaf-tree x D (chain-only)": 0.08646672160809549,
+    "Sheaf-DAG (no D)": 0.1680130143481875,
+    "Sheaf-DAG x D": 0.0846473201707951,
+    "Sheaf-DAG+Conf x D": 0.06321135111861316,
+    "Sheaf edge->upstream x D": 0.07528357870016064,
+    "Naive incident energy x D": 0.06604111975709306,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.05084045782331641,
+     "ci95": [
+      0.0357019729784643,
+      0.06573394722931865
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": -0.025139443285226354,
+     "ci95": [
+      -0.04253048913515913,
+      -0.007505846821012958
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.006281034111297386,
+     "ci95": [
+      -0.012231264039258012,
+      0.026148725394570662
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.021450230217231823,
+     "ci95": [
+      -0.027284825950031576,
+      -0.01583164437614399
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.045670321390887135,
+     "ci95": [
+      -0.05413401581355723,
+      -0.03764837778195749
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.001592768928674782,
+     "ci95": [
+      -0.0013090125138833391,
+      0.004403520490073381
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.1537477562180132,
+     "ci95": [
+      0.13365652943726675,
+      0.1738242038891059
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.023430093907745073,
+     "ci95": [
+      -0.02918838563456247,
+      -0.018073213888182605
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": -0.009887956230413577,
+     "ci95": [
+      -0.015163549534266832,
+      -0.0052891341700710935
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.01722366910378547,
+     "ci95": [
+      -0.022269964088651818,
+      -0.012334765717055624
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.08760246751116384,
+     "ci95": [
+      -0.09952513449775138,
+      -0.07604556796358451
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9673341644536674,
+     "originating": 0.9663915915500002,
+     "propagated_consistent": 0.9676598327799382,
+     "propagated_fresh": 0.9674154039674641
+    },
+    "sheaf_tree": {
+     "all_false": 0.1856389161510349,
+     "originating": 0.1677095155471943,
+     "propagated_consistent": 0.18850556326846385,
+     "propagated_fresh": 0.21691155830493059
+    },
+    "sheaf_dag": {
+     "all_false": 0.20626188883613414,
+     "originating": 0.15851546640300493,
+     "propagated_consistent": 0.222892189088548,
+     "propagated_fresh": 0.20918524678063571
+    },
+    "incident_energy": {
+     "all_false": 0.3125134461002072,
+     "originating": 0.33191127833626366,
+     "propagated_consistent": 0.30582099326206286,
+     "propagated_fresh": 0.31075499960538533
+    },
+    "upstream_edge": {
+     "all_false": 0.4138790203956036,
+     "originating": 0.43711904661144646,
+     "propagated_consistent": 0.4092169795396954,
+     "propagated_fresh": 0.3817960175648287
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 25.095,
+    "mean_multi_parent_nodes": 7.95
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 1.0,
+    "q_consistent": 0.9,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.9338477627060675,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9180880150640759,
+    "Sheaf-DAG (no D)": 0.7912418713722734,
+    "Sheaf-DAG x D": 0.9208990420001026,
+    "Sheaf-DAG+Conf x D": 0.939658478733376,
+    "Sheaf edge->upstream x D": 0.9237097914824212,
+    "Naive incident energy x D": 0.9323757463623741,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11569964755764531,
+    "Uncertainty (repo)": 0.09188953391197562,
+    "Dependency-aware (repo)": 0.12058724351317605,
+    "D only (structure)": 0.06334614063493917,
+    "Conf x D": 0.043280742292783274,
+    "Sheaf-tree x D (chain-only)": 0.08124512055376863,
+    "Sheaf-DAG (no D)": 0.15630158010942335,
+    "Sheaf-DAG x D": 0.07669945644422571,
+    "Sheaf-DAG+Conf x D": 0.06043882256254165,
+    "Sheaf edge->upstream x D": 0.07365615055413233,
+    "Naive incident energy x D": 0.06379843883414453,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.0593419673345835,
+     "ci95": [
+      0.0444755279917059,
+      0.07394759217419454
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": -0.01663793377395925,
+     "ci95": [
+      -0.03326132444683669,
+      0.00022032889136012636
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.014782543622564486,
+     "ci95": [
+      -0.0031709606187011533,
+      0.03450897230599134
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.012948720705964725,
+     "ci95": [
+      -0.017451461941067933,
+      -0.008346233835943332
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.037168811879620026,
+     "ci95": [
+      -0.04405510516301987,
+      -0.030171463674469327
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.002811026936026936,
+     "ci95": [
+      0.00031093223905723775,
+      0.005499999999999998
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.12965717062782978,
+     "ci95": [
+      0.11134131303550357,
+      0.14850292510456753
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.018759436733272933,
+     "ci95": [
+      -0.02338264934478907,
+      -0.014244979439836937
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": -0.0028107494823179373,
+     "ci95": [
+      -0.006549998634262438,
+      0.0007349798905828112
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.011476704362271172,
+     "ci95": [
+      -0.0154556088237924,
+      -0.0075193244333924434
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.07910095799989673,
+     "ci95": [
+      -0.08989695702451996,
+      -0.06861201805390933
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9673341644536674,
+     "originating": 0.9663915915500002,
+     "propagated_consistent": 0.9676598327799382,
+     "propagated_fresh": 0.9674154039674641
+    },
+    "sheaf_tree": {
+     "all_false": 0.25081902854537613,
+     "originating": 0.3246307004348623,
+     "propagated_consistent": 0.200522928197505,
+     "propagated_fresh": 0.4659150545097136
+    },
+    "sheaf_dag": {
+     "all_false": 0.2754235680667747,
+     "originating": 0.31941979027606254,
+     "propagated_consistent": 0.2382609419630499,
+     "propagated_fresh": 0.4677941527053075
+    },
+    "incident_energy": {
+     "all_false": 0.36574947887339426,
+     "originating": 0.44893054128883914,
+     "propagated_consistent": 0.3194974963082947,
+     "propagated_fresh": 0.5150002400233678
+    },
+    "upstream_edge": {
+     "all_false": 0.4219814347113875,
+     "originating": 0.44895247035408387,
+     "propagated_consistent": 0.4156605094065954,
+     "propagated_fresh": 0.3928798085020346
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 25.095,
+    "mean_multi_parent_nodes": 7.95
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.9,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.9338477627060675,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9337667414610513,
+    "Sheaf-DAG (no D)": 0.8612851369798057,
+    "Sheaf-DAG x D": 0.9320247626800022,
+    "Sheaf-DAG+Conf x D": 0.9446918766231863,
+    "Sheaf edge->upstream x D": 0.9229097914824209,
+    "Naive incident energy x D": 0.9377954112130419,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11569964755764531,
+    "Uncertainty (repo)": 0.09188953391197562,
+    "Dependency-aware (repo)": 0.12058724351317605,
+    "D only (structure)": 0.06334614063493917,
+    "Conf x D": 0.043280742292783274,
+    "Sheaf-tree x D (chain-only)": 0.06941899550904372,
+    "Sheaf-DAG (no D)": 0.12468389805717518,
+    "Sheaf-DAG x D": 0.06897197169171475,
+    "Sheaf-DAG+Conf x D": 0.05678227490667011,
+    "Sheaf edge->upstream x D": 0.07591238928851834,
+    "Naive incident energy x D": 0.06029136346217763,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.07046768801448282,
+     "ci95": [
+      0.05591160032061519,
+      0.08522868891672772
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": -0.005512213094059953,
+     "ci95": [
+      -0.021560406042765688,
+      0.01109844848289914
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.025908264302463787,
+     "ci95": [
+      0.00816267021427807,
+      0.04616711436800237
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.001823000026065425,
+     "ci95": [
+      -0.005554554810318192,
+      0.0018735712577964355
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.02604309119972073,
+     "ci95": [
+      -0.031899580553316056,
+      -0.020549326469898908
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0017419787810491905,
+     "ci95": [
+      -0.00443336222268617,
+      0.0005391110388595136
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.07073962570019632,
+     "ci95": [
+      0.05469930484619267,
+      0.08684778323983995
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.012667113943183799,
+     "ci95": [
+      -0.016660258568268853,
+      -0.008973192967526814
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.009114971197581366,
+     "ci95": [
+      0.004879054857513103,
+      0.013449450156047938
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.005770648533039614,
+     "ci95": [
+      -0.009238133461238144,
+      -0.002562932322354077
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06797523731999744,
+     "ci95": [
+      -0.07766041879763008,
+      -0.05854121666116894
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9673341644536674,
+     "originating": 0.9663915915500002,
+     "propagated_consistent": 0.9676598327799382,
+     "propagated_fresh": 0.9674154039674641
+    },
+    "sheaf_tree": {
+     "all_false": 0.38391811335063253,
+     "originating": 0.6756320636276316,
+     "propagated_consistent": 0.22895737097204233,
+     "propagated_fresh": 0.8426341710284473
+    },
+    "sheaf_dag": {
+     "all_false": 0.41682730584824723,
+     "originating": 0.6687853221456629,
+     "propagated_consistent": 0.2790310228949947,
+     "propagated_fresh": 0.8483471339989439
+    },
+    "incident_energy": {
+     "all_false": 0.46408962241394824,
+     "originating": 0.6856162003213697,
+     "propagated_consistent": 0.34749665899647014,
+     "propagated_fresh": 0.8027573396298109
+    },
+    "upstream_edge": {
+     "all_false": 0.4316187611414425,
+     "originating": 0.4725114678752018,
+     "propagated_consistent": 0.41960014261264067,
+     "propagated_fresh": 0.40924553739604763
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 25.095,
+    "mean_multi_parent_nodes": 7.95
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 4.0,
+    "q_consistent": 0.9,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.9338477627060675,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9435692085186147,
+    "Sheaf-DAG (no D)": 0.9195481716642044,
+    "Sheaf-DAG x D": 0.9425289234838031,
+    "Sheaf-DAG+Conf x D": 0.94935868072608,
+    "Sheaf edge->upstream x D": 0.9225899862876156,
+    "Naive incident energy x D": 0.9401282103583409,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11569964755764531,
+    "Uncertainty (repo)": 0.09188953391197562,
+    "Dependency-aware (repo)": 0.12058724351317605,
+    "D only (structure)": 0.06334614063493917,
+    "Conf x D": 0.043280742292783274,
+    "Sheaf-tree x D (chain-only)": 0.05920883337511357,
+    "Sheaf-DAG (no D)": 0.10222818195218926,
+    "Sheaf-DAG x D": 0.05888278516507524,
+    "Sheaf-DAG+Conf x D": 0.0515020297933143,
+    "Sheaf edge->upstream x D": 0.07595548161500558,
+    "Naive incident energy x D": 0.05860761179896398,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.08097184881828348,
+     "ci95": [
+      0.06661301067140117,
+      0.09545231466851681
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.004991947709740718,
+     "ci95": [
+      -0.010534307653129273,
+      0.020704098119959102
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.03641242510626446,
+     "ci95": [
+      0.019399453639823015,
+      0.055664886575903585
+     ]
+    },
+    "D only (structure)": {
+     "mean": 0.008681160777735245,
+     "ci95": [
+      0.005806657427339083,
+      0.012021392816054306
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.015538930395920057,
+     "ci95": [
+      -0.019740354028591395,
+      -0.011393445151396854
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0010402850348118387,
+     "ci95": [
+      -0.0027747280900604497,
+      0.0007321529841428325
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.022980751819598674,
+     "ci95": [
+      0.008013936169603612,
+      0.03735772123693382
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.006829757242276913,
+     "ci95": [
+      -0.009270044333289316,
+      -0.004414888824622794
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.019938937196187233,
+     "ci95": [
+      0.01526390469176581,
+      0.0251486048165616
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": 0.00240071312546191,
+     "ci95": [
+      0.0007560621292608485,
+      0.004163344235125674
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.05747107651619676,
+     "ci95": [
+      -0.06539706346014687,
+      -0.04955940794159883
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9673341644536674,
+     "originating": 0.9663915915500002,
+     "propagated_consistent": 0.9676598327799382,
+     "propagated_fresh": 0.9674154039674641
+    },
+    "sheaf_tree": {
+     "all_false": 0.46477554814919264,
+     "originating": 0.9005030860991526,
+     "propagated_consistent": 0.25368202682658914,
+     "propagated_fresh": 0.968018310121582
+    },
+    "sheaf_dag": {
+     "all_false": 0.5146436374435295,
+     "originating": 0.8978527469680824,
+     "propagated_consistent": 0.32731809988149924,
+     "propagated_fresh": 0.9721934962617378
+    },
+    "incident_energy": {
+     "all_false": 0.5225342203832355,
+     "originating": 0.8268516915516674,
+     "propagated_consistent": 0.3688233792181792,
+     "propagated_fresh": 0.9301035680490658
+    },
+    "upstream_edge": {
+     "all_false": 0.43307877867158706,
+     "originating": 0.4760451251431481,
+     "propagated_consistent": 0.4201806678800644,
+     "propagated_fresh": 0.4119830242456148
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 25.095,
+    "mean_multi_parent_nodes": 7.95
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.5,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.933895598203903,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9402862248326868,
+    "Sheaf-DAG (no D)": 0.925883797357209,
+    "Sheaf-DAG x D": 0.9391971795960807,
+    "Sheaf-DAG+Conf x D": 0.9471215591878743,
+    "Sheaf edge->upstream x D": 0.9395314165569996,
+    "Naive incident energy x D": 0.938985105292675,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11569964755764531,
+    "Uncertainty (repo)": 0.09188953391197562,
+    "Dependency-aware (repo)": 0.12058724351317605,
+    "D only (structure)": 0.06348424872477394,
+    "Conf x D": 0.043280742292783274,
+    "Sheaf-tree x D (chain-only)": 0.05914608568149126,
+    "Sheaf-DAG (no D)": 0.0755607898133217,
+    "Sheaf-DAG x D": 0.0585707741406891,
+    "Sheaf-DAG+Conf x D": 0.051354779376676436,
+    "Sheaf edge->upstream x D": 0.057457491854598954,
+    "Naive incident energy x D": 0.05831895346214096,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.0776401049305611,
+     "ci95": [
+      0.06336370430617128,
+      0.09214264234640512
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.0016602038220183395,
+     "ci95": [
+      -0.013468929647716139,
+      0.017451899713159746
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.03308068121854208,
+     "ci95": [
+      0.015784434001789326,
+      0.05190531752141374
+     ]
+    },
+    "D only (structure)": {
+     "mean": 0.005301581392177369,
+     "ci95": [
+      0.0024986850945751884,
+      0.008178864379872511
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.018870674283642433,
+     "ci95": [
+      -0.02293816258929086,
+      -0.014950016624754758
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0010890452366062115,
+     "ci95": [
+      -0.002372257139879092,
+      0.00012552083333333144
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.01331338223887189,
+     "ci95": [
+      0.0038148756787802877,
+      0.023036682296496067
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.007924379591793507,
+     "ci95": [
+      -0.01031513106866631,
+      -0.005633523449141725
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": -0.00033423696091854413,
+     "ci95": [
+      -0.002438060318447447,
+      0.0016473641764053273
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": 0.00021207430340557332,
+     "ci95": [
+      -0.001354194078947369,
+      0.001775741744066042
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06080282040391914,
+     "ci95": [
+      -0.06901846966476399,
+      -0.05278236358167878
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9673341644536674,
+     "originating": 0.9663915915500002,
+     "propagated_consistent": 0.9680833198404942,
+     "propagated_fresh": 0.9671809582663633
+    },
+    "sheaf_tree": {
+     "all_false": 0.6468962038985417,
+     "originating": 0.7947807542316043,
+     "propagated_consistent": 0.31530567992924596,
+     "propagated_fresh": 0.8879317384387907
+    },
+    "sheaf_dag": {
+     "all_false": 0.6638804639596085,
+     "originating": 0.7913916236100371,
+     "propagated_consistent": 0.3598088600354584,
+     "propagated_fresh": 0.8901224240122696
+    },
+    "incident_energy": {
+     "all_false": 0.6350815483276357,
+     "originating": 0.7351122806612574,
+     "propagated_consistent": 0.3930424955270222,
+     "propagated_fresh": 0.8161124886811691
+    },
+    "upstream_edge": {
+     "all_false": 0.468012220436756,
+     "originating": 0.546522063076199,
+     "propagated_consistent": 0.44935466259630436,
+     "propagated_fresh": 0.43642924767738167
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 25.095,
+    "mean_multi_parent_nodes": 7.95
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.99,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.9339102627060675,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9324173362948733,
+    "Sheaf-DAG (no D)": 0.8394563352143831,
+    "Sheaf-DAG x D": 0.9311929262158128,
+    "Sheaf-DAG+Conf x D": 0.9442575817513912,
+    "Sheaf edge->upstream x D": 0.9222039091294796,
+    "Naive incident energy x D": 0.9373125052301358,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11569964755764531,
+    "Uncertainty (repo)": 0.09188953391197562,
+    "Dependency-aware (repo)": 0.12058724351317605,
+    "D only (structure)": 0.0633558790228123,
+    "Conf x D": 0.043280742292783274,
+    "Sheaf-tree x D (chain-only)": 0.07153449764360092,
+    "Sheaf-DAG (no D)": 0.14615766445021944,
+    "Sheaf-DAG x D": 0.07141344935214118,
+    "Sheaf-DAG+Conf x D": 0.057323572828803,
+    "Sheaf edge->upstream x D": 0.07676229984246542,
+    "Naive incident energy x D": 0.06194820349397564,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.0696358515502934,
+     "ci95": [
+      0.055091038484883774,
+      0.08417622537861477
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": -0.006344049558249358,
+     "ci95": [
+      -0.022403826386827197,
+      0.010456821606816512
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.025076427838274382,
+     "ci95": [
+      0.0069876418088836816,
+      0.04493713662925202
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.0027173364902548297,
+     "ci95": [
+      -0.006557480167332469,
+      0.0013488511762173166
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.026874927663910135,
+     "ci95": [
+      -0.03303340615934501,
+      -0.020962757046220082
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0012244100790606055,
+     "ci95": [
+      -0.0035104401071565238,
+      0.0008002323717948722
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.09173659100143002,
+     "ci95": [
+      0.07378909464054823,
+      0.11139335870007858
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.013064655535578331,
+     "ci95": [
+      -0.017012126639297624,
+      -0.009055189870821111
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.008989017086333135,
+     "ci95": [
+      0.0043202438875730165,
+      0.0136265872681311
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.006119579014323036,
+     "ci95": [
+      -0.009782711301485694,
+      -0.0026900275960059583
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06880707378418684,
+     "ci95": [
+      -0.07892729856214066,
+      -0.059083712519580396
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9673341644536674,
+     "originating": 0.9663915915500002,
+     "propagated_consistent": 0.9677147602943592,
+     "propagated_fresh": 0.9556123402929262
+    },
+    "sheaf_tree": {
+     "all_false": 0.31589837085885725,
+     "originating": 0.6427665503528528,
+     "propagated_consistent": 0.20720995816624832,
+     "propagated_fresh": 0.859445310065441
+    },
+    "sheaf_dag": {
+     "all_false": 0.35040923642542254,
+     "originating": 0.6335592924734574,
+     "propagated_consistent": 0.25597277800404405,
+     "propagated_fresh": 0.8643315674665005
+    },
+    "incident_energy": {
+     "all_false": 0.41729561042920044,
+     "originating": 0.6718443626272302,
+     "propagated_consistent": 0.3326977719039243,
+     "propagated_fresh": 0.8340355250856964
+    },
+    "upstream_edge": {
+     "all_false": 0.4157213650763434,
+     "originating": 0.44982674756055174,
+     "propagated_consistent": 0.404941373292616,
+     "propagated_fresh": 0.3877033343720786
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 25.095,
+    "mean_multi_parent_nodes": 7.95
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.0,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.9,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8613054062396795,
+    "Uncertainty (repo)": 0.9394988024365777,
+    "Dependency-aware (repo)": 0.9094585060629023,
+    "D only (structure)": 0.9311096052591671,
+    "Conf x D": 0.9555751082384751,
+    "Sheaf-tree x D (chain-only)": 0.9303187087032668,
+    "Sheaf-DAG (no D)": 0.8700212399917945,
+    "Sheaf-DAG x D": 0.9303187087032668,
+    "Sheaf-DAG+Conf x D": 0.9437250723118495,
+    "Sheaf edge->upstream x D": 0.9248104119110029,
+    "Naive incident energy x D": 0.9374698196021716,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11487027969067688,
+    "Uncertainty (repo)": 0.09165252833522478,
+    "Dependency-aware (repo)": 0.12029460427601432,
+    "D only (structure)": 0.06319189166646325,
+    "Conf x D": 0.04421037766053165,
+    "Sheaf-tree x D (chain-only)": 0.07228081800062684,
+    "Sheaf-DAG (no D)": 0.12930207181304954,
+    "Sheaf-DAG x D": 0.07228081800062684,
+    "Sheaf-DAG+Conf x D": 0.05701186004654238,
+    "Sheaf edge->upstream x D": 0.07385680017082824,
+    "Naive incident energy x D": 0.06268534805770254,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.06901330246358689,
+     "ci95": [
+      0.05418725740194283,
+      0.083624304455439
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": -0.009180093733311183,
+     "ci95": [
+      -0.02517628526673176,
+      0.007472668451201881
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.020860202640364395,
+     "ci95": [
+      0.002504197515518305,
+      0.040270638746369984
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.0007908965559007435,
+     "ci95": [
+      -0.00463435086435919,
+      0.0028738108875417077
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.025256399535208564,
+     "ci95": [
+      -0.03098859370393638,
+      -0.019317249625401395
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.06029746871147228,
+     "ci95": [
+      0.04413058444762451,
+      0.07791814749204577
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.01340636360858285,
+     "ci95": [
+      -0.017479667177566046,
+      -0.009312652526204786
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.005508296792263896,
+     "ci95": [
+      0.002121096424960827,
+      0.009265666415281117
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.007151110898905018,
+     "ci95": [
+      -0.010527265883626177,
+      -0.003756072303921568
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06968129129673326,
+     "ci95": [
+      -0.07965728926705835,
+      -0.06011375723318918
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9676995997227522,
+     "originating": 0.9662569169679706,
+     "propagated_consistent": 0.9686872405610232,
+     "propagated_fresh": 0.9641254801963284
+    },
+    "sheaf_tree": {
+     "all_false": 0.35565921492694946,
+     "originating": 0.6925844894170686,
+     "propagated_consistent": 0.16285882666872148,
+     "propagated_fresh": 0.8587731140054833
+    },
+    "sheaf_dag": {
+     "all_false": 0.35565921492694946,
+     "originating": 0.6925844894170686,
+     "propagated_consistent": 0.16285882666872148,
+     "propagated_fresh": 0.8587731140054833
+    },
+    "incident_energy": {
+     "all_false": 0.4128517957566282,
+     "originating": 0.7177550310064855,
+     "propagated_consistent": 0.24185013791558396,
+     "propagated_fresh": 0.83771239052357
+    },
+    "upstream_edge": {
+     "all_false": 0.4318316896456619,
+     "originating": 0.4706949051810073,
+     "propagated_consistent": 0.4165039219967151,
+     "propagated_fresh": 0.42932510020582815
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 24.035,
+    "mean_multi_parent_nodes": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.4,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.9,
+    "overconfident": false
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8645003663540145,
+    "Uncertainty (repo)": 0.9373180732728491,
+    "Dependency-aware (repo)": 0.9114453570472935,
+    "D only (structure)": 0.9423889226082102,
+    "Conf x D": 0.9628011828466532,
+    "Sheaf-tree x D (chain-only)": 0.9391135450499628,
+    "Sheaf-DAG (no D)": 0.8644542597803685,
+    "Sheaf-DAG x D": 0.9392598112059916,
+    "Sheaf-DAG+Conf x D": 0.950316605638593,
+    "Sheaf edge->upstream x D": 0.9345315812387909,
+    "Naive incident energy x D": 0.9447160359023479,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.11722637869262108,
+    "Uncertainty (repo)": 0.08741615342536933,
+    "Dependency-aware (repo)": 0.11229565865804128,
+    "D only (structure)": 0.06100847580309593,
+    "Conf x D": 0.040479143729557285,
+    "Sheaf-tree x D (chain-only)": 0.06766112118762452,
+    "Sheaf-DAG (no D)": 0.12765308959309649,
+    "Sheaf-DAG x D": 0.06569230980224929,
+    "Sheaf-DAG+Conf x D": 0.05232470915691347,
+    "Sheaf edge->upstream x D": 0.0695013621058571,
+    "Naive incident energy x D": 0.05839734176107553,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.07475944485197694,
+     "ci95": [
+      0.06023006229441498,
+      0.0893940901209137
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.0019417379331418273,
+     "ci95": [
+      -0.012891776828812446,
+      0.0172602853136132
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.02781445415869797,
+     "ci95": [
+      0.011415196276578787,
+      0.045622925429638514
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.0031291114022186156,
+     "ci95": [
+      -0.006700455897468392,
+      0.0003581798449067095
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.023541371640661727,
+     "ci95": [
+      -0.0285796605626305,
+      -0.018484374441961663
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.00014626615602846615,
+     "ci95": [
+      -0.00254697204412028,
+      0.003191234262695419
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.07480555142562273,
+     "ci95": [
+      0.057347196961217664,
+      0.09228604797424686
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.011056794432601578,
+     "ci95": [
+      -0.014588703943896861,
+      -0.0076313481056048
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.004728229967200556,
+     "ci95": [
+      0.0015399374012425478,
+      0.00810935839079221
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.005456224696356275,
+     "ci95": [
+      -0.008814009784075573,
+      -0.0023682291666666674
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06074018879400855,
+     "ci95": [
+      -0.06983250285844,
+      -0.052101039730039926
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.9674619805441136,
+     "originating": 0.9673895564390048,
+     "propagated_consistent": 0.9681009221311476,
+     "propagated_fresh": 0.961467544295413
+    },
+    "sheaf_tree": {
+     "all_false": 0.4419575373897659,
+     "originating": 0.6631760992242522,
+     "propagated_consistent": 0.3362448770491803,
+     "propagated_fresh": 0.8519953634707733
+    },
+    "sheaf_dag": {
+     "all_false": 0.5047685044400827,
+     "originating": 0.6587666949568947,
+     "propagated_consistent": 0.42520858948087437,
+     "propagated_fresh": 0.8480969531379368
+    },
+    "incident_energy": {
+     "all_false": 0.5380418482784889,
+     "originating": 0.6594294307708343,
+     "propagated_consistent": 0.4772599470628416,
+     "propagated_fresh": 0.7899478390461998
+    },
+    "upstream_edge": {
+     "all_false": 0.43572302238932037,
+     "originating": 0.4830894417891336,
+     "propagated_consistent": 0.42224105618169394,
+     "propagated_fresh": 0.4347642407683391
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.185,
+    "mean_false": 26.685,
+    "mean_multi_parent_nodes": 21.745
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 0.5,
+    "q_consistent": 0.9,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9345316320079565,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9088853252750475,
+    "Sheaf-DAG (no D)": 0.7643907814411586,
+    "Sheaf-DAG x D": 0.9090468989454921,
+    "Sheaf-DAG+Conf x D": 0.9139175723865292,
+    "Sheaf edge->upstream x D": 0.9214660991012026,
+    "Naive incident energy x D": 0.9295875768046755,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11595025757334237,
+    "Uncertainty (repo)": 0.1501311226454165,
+    "Dependency-aware (repo)": 0.15456584300555015,
+    "D only (structure)": 0.06312838966554889,
+    "Conf x D": 0.08412138990815826,
+    "Sheaf-tree x D (chain-only)": 0.09046173472540178,
+    "Sheaf-DAG (no D)": 0.17099352970339612,
+    "Sheaf-DAG x D": 0.09054469452164862,
+    "Sheaf-DAG+Conf x D": 0.08394282165595705,
+    "Sheaf edge->upstream x D": 0.07775687086538015,
+    "Naive incident energy x D": 0.06689247424269057,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.04401035947830872,
+     "ci95": [
+      0.028335099180064476,
+      0.05916187333158697
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.10815813348833768,
+     "ci95": [
+      0.08924271163928608,
+      0.12757125510746686
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.09168327702526324,
+     "ci95": [
+      0.07473764789938339,
+      0.10836204089012785
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.025484733062464748,
+     "ci95": [
+      -0.03217865345307483,
+      -0.019495875923099135
+     ]
+    },
+    "Conf x D": {
+     "mean": -0.007506758078817701,
+     "ci95": [
+      -0.01401438795599529,
+      -0.000978362808924038
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.00016157367044463967,
+     "ci95": [
+      -0.002497388023103749,
+      0.0028580353639930268
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.14465611750433344,
+     "ci95": [
+      0.12413943735445873,
+      0.16467212125582642
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.0048706734410373575,
+     "ci95": [
+      -0.009068791303500117,
+      -0.0013010371526951915
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": -0.012419200155710897,
+     "ci95": [
+      -0.017669822695342598,
+      -0.007793680459596623
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.02054067785918388,
+     "ci95": [
+      -0.02634175794441114,
+      -0.015119259593331233
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.09089060105450791,
+     "ci95": [
+      -0.10338806673518999,
+      -0.07869167306148563
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34032205437423163,
+     "originating": 0.33041684211789724,
+     "propagated_consistent": 0.3433921745344328,
+     "propagated_fresh": 0.34584893251903587
+    },
+    "sheaf_tree": {
+     "all_false": 0.1839814836270447,
+     "originating": 0.1725486170775643,
+     "propagated_consistent": 0.1839108662002307,
+     "propagated_fresh": 0.22378737382214017
+    },
+    "sheaf_dag": {
+     "all_false": 0.20318403205513202,
+     "originating": 0.16175836639818042,
+     "propagated_consistent": 0.21814947703259913,
+     "propagated_fresh": 0.20664011522560444
+    },
+    "incident_energy": {
+     "all_false": 0.30853894381646707,
+     "originating": 0.3296013064573721,
+     "propagated_consistent": 0.29927451385965925,
+     "propagated_fresh": 0.3220922147361354
+    },
+    "upstream_edge": {
+     "all_false": 0.41349271237996704,
+     "originating": 0.43433662681548263,
+     "propagated_consistent": 0.40681114972461413,
+     "propagated_fresh": 0.4039061616926244
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 24.475,
+    "mean_multi_parent_nodes": 7.96
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 1.0,
+    "q_consistent": 0.9,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9345316320079565,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9162095425371706,
+    "Sheaf-DAG (no D)": 0.7931141650014879,
+    "Sheaf-DAG x D": 0.9188317743981791,
+    "Sheaf-DAG+Conf x D": 0.9194161121895849,
+    "Sheaf edge->upstream x D": 0.9226302835714015,
+    "Naive incident energy x D": 0.9312788045809642,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11595025757334237,
+    "Uncertainty (repo)": 0.1501311226454165,
+    "Dependency-aware (repo)": 0.15456584300555015,
+    "D only (structure)": 0.06312838966554889,
+    "Conf x D": 0.08412138990815826,
+    "Sheaf-tree x D (chain-only)": 0.08584568657442009,
+    "Sheaf-DAG (no D)": 0.16077473079688906,
+    "Sheaf-DAG x D": 0.08144143387809769,
+    "Sheaf-DAG+Conf x D": 0.07987739718145512,
+    "Sheaf edge->upstream x D": 0.07685334080176029,
+    "Naive incident energy x D": 0.0652657465513645,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.05379523493099597,
+     "ci95": [
+      0.038400513247828304,
+      0.06904406038489885
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.11794300894102491,
+     "ci95": [
+      0.09869333505823315,
+      0.1373635718958272
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.10146815247795049,
+     "ci95": [
+      0.08375293892584133,
+      0.11853755915766567
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.015699857609777504,
+     "ci95": [
+      -0.020359806215378935,
+      -0.01113985608487895
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.002278117373869542,
+     "ci95": [
+      -0.003568329862832132,
+      0.0084634361618735
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.0026222318610086975,
+     "ci95": [
+      0.0001255534018892021,
+      0.005428614206065203
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.12571760939669102,
+     "ci95": [
+      0.10619084260811931,
+      0.1455825686090469
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.0005843377914056763,
+     "ci95": [
+      -0.003509473777927723,
+      0.001991888536978562
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": -0.0037985091732220203,
+     "ci95": [
+      -0.007486329619676922,
+      -0.00040210029495520703
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.012447030182785384,
+     "ci95": [
+      -0.01677904389217087,
+      -0.008422338315427432
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.08110572560182067,
+     "ci95": [
+      -0.09247183755948965,
+      -0.07023316169186328
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34032205437423163,
+     "originating": 0.33041684211789724,
+     "propagated_consistent": 0.3433921745344328,
+     "propagated_fresh": 0.34584893251903587
+    },
+    "sheaf_tree": {
+     "all_false": 0.2504985755431818,
+     "originating": 0.33065351374220725,
+     "propagated_consistent": 0.19681029050370158,
+     "propagated_fresh": 0.4725431496597009
+    },
+    "sheaf_dag": {
+     "all_false": 0.27258529674983356,
+     "originating": 0.3230685194983412,
+     "propagated_consistent": 0.2336361469793663,
+     "propagated_fresh": 0.45992664814745043
+    },
+    "incident_energy": {
+     "all_false": 0.36200777329436246,
+     "originating": 0.4462589130058621,
+     "propagated_consistent": 0.31360299475523407,
+     "propagated_fresh": 0.5211595175869759
+    },
+    "upstream_edge": {
+     "all_false": 0.4217730682781075,
+     "originating": 0.44689835147524065,
+     "propagated_consistent": 0.41334201566189355,
+     "propagated_fresh": 0.4137049621680498
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 24.475,
+    "mean_multi_parent_nodes": 7.96
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.9,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9345316320079565,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9324378393523,
+    "Sheaf-DAG (no D)": 0.871190672577752,
+    "Sheaf-DAG x D": 0.9308213872059027,
+    "Sheaf-DAG+Conf x D": 0.9307616477934562,
+    "Sheaf edge->upstream x D": 0.924245543311661,
+    "Naive incident energy x D": 0.936143846521862,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11595025757334237,
+    "Uncertainty (repo)": 0.1501311226454165,
+    "Dependency-aware (repo)": 0.15456584300555015,
+    "D only (structure)": 0.06312838966554889,
+    "Conf x D": 0.08412138990815826,
+    "Sheaf-tree x D (chain-only)": 0.07063525761470905,
+    "Sheaf-DAG (no D)": 0.12271491894840449,
+    "Sheaf-DAG x D": 0.07167650052693247,
+    "Sheaf-DAG+Conf x D": 0.07048763921672763,
+    "Sheaf edge->upstream x D": 0.0758273354934075,
+    "Naive incident energy x D": 0.062015245474084726,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.06578484773871927,
+     "ci95": [
+      0.05072197150934402,
+      0.08096023553613871
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.12993262174874823,
+     "ci95": [
+      0.11027661043114836,
+      0.14878066579564503
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.1134577652856738,
+     "ci95": [
+      0.09544047532529293,
+      0.1308924774367571
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.003710244802054189,
+     "ci95": [
+      -0.007828405494965477,
+      0.00017323804192363406
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.01426773018159286,
+     "ci95": [
+      0.008452789683947902,
+      0.02029397062998289
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0016164521463974636,
+     "ci95": [
+      -0.004319797313156753,
+      0.0009440166138194395
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.05963071462815024,
+     "ci95": [
+      0.04322034458262389,
+      0.07514505002439978
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": 5.973941244634906e-05,
+     "ci95": [
+      -0.0031333605831924912,
+      0.003051806983596315
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.00657584389424156,
+     "ci95": [
+      0.0024940863180192095,
+      0.010789280044645386
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.00532245931595984,
+     "ci95": [
+      -0.009251070278211539,
+      -0.0017886162301233753
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06911611279409736,
+     "ci95": [
+      -0.07909832912113139,
+      -0.059649111670242526
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34032205437423163,
+     "originating": 0.33041684211789724,
+     "propagated_consistent": 0.3433921745344328,
+     "propagated_fresh": 0.34584893251903587
+    },
+    "sheaf_tree": {
+     "all_false": 0.38625770236900103,
+     "originating": 0.6824045586980635,
+     "propagated_consistent": 0.22738114835986023,
+     "propagated_fresh": 0.84146503327636
+    },
+    "sheaf_dag": {
+     "all_false": 0.41665950628433146,
+     "originating": 0.6740147809118396,
+     "propagated_consistent": 0.27571343575221924,
+     "propagated_fresh": 0.8388798214756688
+    },
+    "incident_energy": {
+     "all_false": 0.4619846638388375,
+     "originating": 0.6832328468708335,
+     "propagated_consistent": 0.3428096542358017,
+     "propagated_fresh": 0.8065047319908614
+    },
+    "upstream_edge": {
+     "all_false": 0.4318905945768558,
+     "originating": 0.4738225305385161,
+     "propagated_consistent": 0.41702615679559485,
+     "propagated_fresh": 0.4257665722437822
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 24.475,
+    "mean_multi_parent_nodes": 7.96
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 4.0,
+    "q_consistent": 0.9,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9345316320079565,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9430966665891134,
+    "Sheaf-DAG (no D)": 0.9282574141874353,
+    "Sheaf-DAG x D": 0.9418687779058772,
+    "Sheaf-DAG+Conf x D": 0.9363263741833374,
+    "Sheaf edge->upstream x D": 0.9243080433116608,
+    "Naive incident energy x D": 0.9387380746117797,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11595025757334237,
+    "Uncertainty (repo)": 0.1501311226454165,
+    "Dependency-aware (repo)": 0.15456584300555015,
+    "D only (structure)": 0.06312838966554889,
+    "Conf x D": 0.08412138990815826,
+    "Sheaf-tree x D (chain-only)": 0.059920614107205714,
+    "Sheaf-DAG (no D)": 0.09459668778763693,
+    "Sheaf-DAG x D": 0.06073479058377091,
+    "Sheaf-DAG+Conf x D": 0.06648903570831546,
+    "Sheaf edge->upstream x D": 0.07569903538926916,
+    "Naive incident energy x D": 0.06061126479316986,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.07683223843869373,
+     "ci95": [
+      0.0621167592445896,
+      0.0916097344899338
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.14098001244872269,
+     "ci95": [
+      0.12199554801647747,
+      0.15951252654695805
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.12450515598564825,
+     "ci95": [
+      0.10639444137208275,
+      0.14161988369969367
+     ]
+    },
+    "D only (structure)": {
+     "mean": 0.00733714589792025,
+     "ci95": [
+      0.00467026617603947,
+      0.010527038875537945
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.025315120881567302,
+     "ci95": [
+      0.019234995262025174,
+      0.03233122195943336
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0012278886832363834,
+     "ci95": [
+      -0.002760332661290324,
+      0.00020551295610787888
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.013611363718442132,
+     "ci95": [
+      2.32581867121253e-05,
+      0.026877822781963896
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": 0.005542403722539598,
+     "ci95": [
+      0.003089205079211381,
+      0.008151942425706347
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.017560734594216,
+     "ci95": [
+      0.013118688056410668,
+      0.02224467804524297
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": 0.0031307032940968526,
+     "ci95": [
+      0.0013470200398547764,
+      0.004956628236294924
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.05806872209412292,
+     "ci95": [
+      -0.06632825588340968,
+      -0.050057904257031105
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34032205437423163,
+     "originating": 0.33041684211789724,
+     "propagated_consistent": 0.3433921745344328,
+     "propagated_fresh": 0.34584893251903587
+    },
+    "sheaf_tree": {
+     "all_false": 0.4680848711976648,
+     "originating": 0.904137365060917,
+     "propagated_consistent": 0.25284232685170904,
+     "propagated_fresh": 0.9654807003963021
+    },
+    "sheaf_dag": {
+     "all_false": 0.5159153379773527,
+     "originating": 0.9023675164007309,
+     "propagated_consistent": 0.3241219234474906,
+     "propagated_fresh": 0.9662997646849277
+    },
+    "incident_energy": {
+     "all_false": 0.5223551416033454,
+     "originating": 0.8286424925710366,
+     "propagated_consistent": 0.3647860345491988,
+     "propagated_fresh": 0.9307434688935395
+    },
+    "upstream_edge": {
+     "all_false": 0.4335737645678814,
+     "originating": 0.47823339947969745,
+     "propagated_consistent": 0.4176796924433558,
+     "propagated_fresh": 0.4276311958595508
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 24.475,
+    "mean_multi_parent_nodes": 7.96
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.5,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9340889372027619,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9393718847766814,
+    "Sheaf-DAG (no D)": 0.9347907310410822,
+    "Sheaf-DAG x D": 0.9386115869195305,
+    "Sheaf-DAG+Conf x D": 0.93488940404863,
+    "Sheaf edge->upstream x D": 0.9406502235368502,
+    "Naive incident energy x D": 0.9377349294903844,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11595025757334237,
+    "Uncertainty (repo)": 0.1501311226454165,
+    "Dependency-aware (repo)": 0.15456584300555015,
+    "D only (structure)": 0.0631129752963143,
+    "Conf x D": 0.08412138990815826,
+    "Sheaf-tree x D (chain-only)": 0.060408293517186344,
+    "Sheaf-DAG (no D)": 0.07391104718532762,
+    "Sheaf-DAG x D": 0.05968185355721765,
+    "Sheaf-DAG+Conf x D": 0.06403845752956852,
+    "Sheaf edge->upstream x D": 0.05785778342975604,
+    "Naive incident energy x D": 0.05998670933903563,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.07357504745234711,
+     "ci95": [
+      0.05940719075084425,
+      0.08820013034861345
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.13772282146237605,
+     "ci95": [
+      0.11900880030026591,
+      0.1562851686089456
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.12124796499930163,
+     "ci95": [
+      0.10363602945064485,
+      0.13800478375990866
+     ]
+    },
+    "D only (structure)": {
+     "mean": 0.004522649716768438,
+     "ci95": [
+      0.0020409502373723546,
+      0.007141377907178194
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.02205792989522068,
+     "ci95": [
+      0.016187144067688,
+      0.0284509638645087
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0007602978571512847,
+     "ci95": [
+      -0.0021482457343622785,
+      0.0005787791748345991
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.0038208558784482067,
+     "ci95": [
+      -0.005031963314266201,
+      0.013269977673389907
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": 0.003722182870900431,
+     "ci95": [
+      0.0017435482449668842,
+      0.006013942230423066
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": -0.0020386366173199074,
+     "ci95": [
+      -0.004504837046324225,
+      0.00045083549900495695
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": 0.0008766574291459872,
+     "ci95": [
+      -0.0006260243463153938,
+      0.0024357062833714714
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06132591308046953,
+     "ci95": [
+      -0.06933288315674227,
+      -0.05341383387996289
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34032205437423163,
+     "originating": 0.33041684211789724,
+     "propagated_consistent": 0.33827131511352915,
+     "propagated_fresh": 0.3488284555181364
+    },
+    "sheaf_tree": {
+     "all_false": 0.6530112121567008,
+     "originating": 0.7991589343100591,
+     "propagated_consistent": 0.31291914410239596,
+     "propagated_fresh": 0.8865212323102477
+    },
+    "sheaf_dag": {
+     "all_false": 0.6703583030269629,
+     "originating": 0.7942893500019504,
+     "propagated_consistent": 0.36183869695198173,
+     "propagated_fresh": 0.8878821596990408
+    },
+    "incident_energy": {
+     "all_false": 0.6402399813621302,
+     "originating": 0.734514699395781,
+     "propagated_consistent": 0.39341008885837997,
+     "propagated_fresh": 0.8174777599732503
+    },
+    "upstream_edge": {
+     "all_false": 0.46738673391998364,
+     "originating": 0.5477633468793353,
+     "propagated_consistent": 0.4443449877206097,
+     "propagated_fresh": 0.43682938885713035
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 24.475,
+    "mean_multi_parent_nodes": 7.96
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.15,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.99,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9345316320079565,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9295725242178157,
+    "Sheaf-DAG (no D)": 0.8461243479612972,
+    "Sheaf-DAG x D": 0.9286986435620398,
+    "Sheaf-DAG+Conf x D": 0.9291292202572241,
+    "Sheaf edge->upstream x D": 0.9203080433116609,
+    "Naive incident energy x D": 0.9362234405389559,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11595025757334237,
+    "Uncertainty (repo)": 0.1501311226454165,
+    "Dependency-aware (repo)": 0.15456584300555015,
+    "D only (structure)": 0.06312838966554889,
+    "Conf x D": 0.08412138990815826,
+    "Sheaf-tree x D (chain-only)": 0.07387416256175933,
+    "Sheaf-DAG (no D)": 0.14534336425075553,
+    "Sheaf-DAG x D": 0.07430641329304823,
+    "Sheaf-DAG+Conf x D": 0.07277538220486526,
+    "Sheaf edge->upstream x D": 0.07999645808008689,
+    "Naive incident energy x D": 0.06384295782555985,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.06366210409485655,
+     "ci95": [
+      0.048766116994921324,
+      0.07828138608366068
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.12780987810488548,
+     "ci95": [
+      0.10836418120128925,
+      0.14699257781548594
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.11133502164181105,
+     "ci95": [
+      0.09366099937382694,
+      0.12813009442777465
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.005832988445916929,
+     "ci95": [
+      -0.0100558679447677,
+      -0.0018023316733450179
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.012144986537730117,
+     "ci95": [
+      0.006203840261271106,
+      0.018119011897557
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": -0.0008738806557760609,
+     "ci95": [
+      -0.0036032320126287718,
+      0.0018700746866260388
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.08257429560074253,
+     "ci95": [
+      0.06319676264861263,
+      0.10191936081476954
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": -0.0004305766951845069,
+     "ci95": [
+      -0.0034784478847926055,
+      0.0023919222502740796
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.008390600250378816,
+     "ci95": [
+      0.003862885734858015,
+      0.01306462381380175
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.0075247969769165965,
+     "ci95": [
+      -0.011335612144266358,
+      -0.004067319882760696
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.0712388564379601,
+     "ci95": [
+      -0.08163122437907341,
+      -0.06160700152785904
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34032205437423163,
+     "originating": 0.33041684211789724,
+     "propagated_consistent": 0.34317585777485876,
+     "propagated_fresh": 0.3954629061925199
+    },
+    "sheaf_tree": {
+     "all_false": 0.3229921546842992,
+     "originating": 0.6529615084171582,
+     "propagated_consistent": 0.20710194308883745,
+     "propagated_fresh": 0.8526881514408338
+    },
+    "sheaf_dag": {
+     "all_false": 0.3551078472571456,
+     "originating": 0.6408828789271487,
+     "propagated_consistent": 0.25439855581986826,
+     "propagated_fresh": 0.8525923513182097
+    },
+    "incident_energy": {
+     "all_false": 0.419624624784484,
+     "originating": 0.6708003976783427,
+     "propagated_consistent": 0.3313427277755516,
+     "propagated_fresh": 0.8302421827099938
+    },
+    "upstream_edge": {
+     "all_false": 0.41777605622424063,
+     "originating": 0.4519356563242959,
+     "propagated_consistent": 0.4063853318311845,
+     "propagated_fresh": 0.40366339668914775
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 24.475,
+    "mean_multi_parent_nodes": 7.96
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.0,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.9,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8656539385378332,
+    "Uncertainty (repo)": 0.8022942809164093,
+    "Dependency-aware (repo)": 0.8148617182423519,
+    "D only (structure)": 0.9315578024366201,
+    "Conf x D": 0.9115772310473215,
+    "Sheaf-tree x D (chain-only)": 0.9302485943132868,
+    "Sheaf-DAG (no D)": 0.8766410642239335,
+    "Sheaf-DAG x D": 0.9302485943132868,
+    "Sheaf-DAG+Conf x D": 0.9265605745514375,
+    "Sheaf edge->upstream x D": 0.9254547533381131,
+    "Naive incident energy x D": 0.9385789196850663,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "reliability_sd": {
+    "Random": 0.11341659244136544,
+    "Uncertainty (repo)": 0.14979750936970676,
+    "Dependency-aware (repo)": 0.15479492357190666,
+    "D only (structure)": 0.06308339049155773,
+    "Conf x D": 0.08285239365902113,
+    "Sheaf-tree x D (chain-only)": 0.07465935202948214,
+    "Sheaf-DAG (no D)": 0.12786166083243425,
+    "Sheaf-DAG x D": 0.07465935202948214,
+    "Sheaf-DAG+Conf x D": 0.07491145161265592,
+    "Sheaf edge->upstream x D": 0.07314420139469034,
+    "Naive incident energy x D": 0.06218332215433074,
+    "Truth-greedy (ceiling)": 0.0008816709987291157
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.0645946557754538,
+     "ci95": [
+      0.0491686076127171,
+      0.07900905036503122
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.12795431339687807,
+     "ci95": [
+      0.1086538883092107,
+      0.1475928261770466
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.11538687607093515,
+     "ci95": [
+      0.09746798795223245,
+      0.13464736525071808
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.0013092081233333675,
+     "ci95": [
+      -0.005800736438226021,
+      0.002963805019228236
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.01867136326596537,
+     "ci95": [
+      0.01185751654258968,
+      0.0255964317585841
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.053607530089353574,
+     "ci95": [
+      0.03681418798735354,
+      0.07034727112737596
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": 0.0036880197618491236,
+     "ci95": [
+      0.0007324561118015356,
+      0.006852880788473111
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.004793840975174317,
+     "ci95": [
+      0.0010279297506341123,
+      0.008861417532367856
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.008330325371779645,
+     "ci95": [
+      -0.012447146872524031,
+      -0.004456772201904796
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06968890568671304,
+     "ci95": [
+      -0.07955325615126435,
+      -0.05943903276469422
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.34191015629506327,
+     "originating": 0.33358268793811263,
+     "propagated_consistent": 0.3429297993302004,
+     "propagated_fresh": 0.3648075083692014
+    },
+    "sheaf_tree": {
+     "all_false": 0.3549516107624267,
+     "originating": 0.6952886729596476,
+     "propagated_consistent": 0.15996799546264787,
+     "propagated_fresh": 0.8587882954364303
+    },
+    "sheaf_dag": {
+     "all_false": 0.3549516107624267,
+     "originating": 0.6952886729596476,
+     "propagated_consistent": 0.15996799546264787,
+     "propagated_fresh": 0.8587882954364303
+    },
+    "incident_energy": {
+     "all_false": 0.41171418752086175,
+     "originating": 0.7182335938142405,
+     "propagated_consistent": 0.2395021645021645,
+     "propagated_fresh": 0.8335883041317045
+    },
+    "upstream_edge": {
+     "all_false": 0.43229625222214246,
+     "originating": 0.473059598421784,
+     "propagated_consistent": 0.416246426256453,
+     "propagated_fresh": 0.42405583815196446
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 23.435,
+    "mean_multi_parent_nodes": 0.0
+   }
+  },
+  {
+   "config": {
+    "max_nodes": 80,
+    "extra_edge_prob": 0.4,
+    "d": 8,
+    "sigma": 1.0,
+    "a": 2.0,
+    "q_consistent": 0.9,
+    "overconfident": true
+   },
+   "n_trials": 200,
+   "budget": 20,
+   "reliability_mean": {
+    "Random": 0.8704282393551702,
+    "Uncertainty (repo)": 0.8038145969473547,
+    "Dependency-aware (repo)": 0.8316520361772759,
+    "D only (structure)": 0.9391818522905514,
+    "Conf x D": 0.9217413088608505,
+    "Sheaf-tree x D (chain-only)": 0.9364804689851778,
+    "Sheaf-DAG (no D)": 0.8716431137786569,
+    "Sheaf-DAG x D": 0.9371340403360117,
+    "Sheaf-DAG+Conf x D": 0.9362062338336815,
+    "Sheaf edge->upstream x D": 0.931754274117706,
+    "Naive incident energy x D": 0.9439444316990345,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "reliability_sd": {
+    "Random": 0.1148762263250971,
+    "Uncertainty (repo)": 0.1475071485696737,
+    "Dependency-aware (repo)": 0.1546412816458361,
+    "D only (structure)": 0.06405043256718523,
+    "Conf x D": 0.08553815917774463,
+    "Sheaf-tree x D (chain-only)": 0.07077030618772043,
+    "Sheaf-DAG (no D)": 0.12391896543652788,
+    "Sheaf-DAG x D": 0.06884207103383458,
+    "Sheaf-DAG+Conf x D": 0.07055751370320609,
+    "Sheaf edge->upstream x D": 0.07146781395780415,
+    "Naive incident energy x D": 0.060225257486126976,
+    "Truth-greedy (ceiling)": 0.0
+   },
+   "sheafDAGxD_minus_other": {
+    "Random": {
+     "mean": 0.06670580098084128,
+     "ci95": [
+      0.051777507333390774,
+      0.08188113104862478
+     ]
+    },
+    "Uncertainty (repo)": {
+     "mean": 0.13331944338865648,
+     "ci95": [
+      0.11487685488560666,
+      0.15194149573048124
+     ]
+    },
+    "Dependency-aware (repo)": {
+     "mean": 0.10548200415873536,
+     "ci95": [
+      0.08845843709294317,
+      0.12247323196712462
+     ]
+    },
+    "D only (structure)": {
+     "mean": -0.002047811954539857,
+     "ci95": [
+      -0.005598522888426397,
+      0.0015877812621543136
+     ]
+    },
+    "Conf x D": {
+     "mean": 0.015392731475161302,
+     "ci95": [
+      0.009459469493385934,
+      0.02181236941616514
+     ]
+    },
+    "Sheaf-tree x D (chain-only)": {
+     "mean": 0.0006535713508336604,
+     "ci95": [
+      -0.002332532731487526,
+      0.003848883850833659
+     ]
+    },
+    "Sheaf-DAG (no D)": {
+     "mean": 0.0654909265573549,
+     "ci95": [
+      0.049044423320143145,
+      0.08284525804416525
+     ]
+    },
+    "Sheaf-DAG+Conf x D": {
+     "mean": 0.0009278065023300974,
+     "ci95": [
+      -0.0013556134720920314,
+      0.0032294289582543915
+     ]
+    },
+    "Sheaf edge->upstream x D": {
+     "mean": 0.005379766218305773,
+     "ci95": [
+      0.002098315625358603,
+      0.008831849984283425
+     ]
+    },
+    "Naive incident energy x D": {
+     "mean": -0.0068103913630229405,
+     "ci95": [
+      -0.010044245529689607,
+      -0.00372588141025641
+     ]
+    },
+    "Truth-greedy (ceiling)": {
+     "mean": -0.06286595966398835,
+     "ci95": [
+      -0.07252208495061177,
+      -0.05359103288702277
+     ]
+    }
+   },
+   "node_auroc": {
+    "conf": {
+     "all_false": 0.3427489029356972,
+     "originating": 0.33382711831067713,
+     "propagated_consistent": 0.34519666766639623,
+     "propagated_fresh": 0.3448068259362635
+    },
+    "sheaf_tree": {
+     "all_false": 0.4439954407428248,
+     "originating": 0.6683967300074104,
+     "propagated_consistent": 0.33660680888977335,
+     "propagated_fresh": 0.8385820096715666
+    },
+    "sheaf_dag": {
+     "all_false": 0.5005570481474324,
+     "originating": 0.6629729400312018,
+     "propagated_consistent": 0.41872755344190765,
+     "propagated_fresh": 0.826128581393917
+    },
+    "incident_energy": {
+     "all_false": 0.5320905295818192,
+     "originating": 0.660188335604686,
+     "propagated_consistent": 0.46834777961977975,
+     "propagated_fresh": 0.781112272328911
+    },
+    "upstream_edge": {
+     "all_false": 0.43320048070402034,
+     "originating": 0.4819673329059384,
+     "propagated_consistent": 0.4189855607276801,
+     "propagated_fresh": 0.43008864337426833
+    }
+   },
+   "dag_stats": {
+    "mean_nodes": 57.095,
+    "mean_false": 26.06,
+    "mean_multi_parent_nodes": 21.555
+   }
+  }
+ ],
+ "budget_sweep_base": {
+  "default_conf": {
+   "5": {
+    "Random": 0.7147819448790735,
+    "Uncertainty (repo)": 0.766262765787676,
+    "Dependency-aware (repo)": 0.7495901081660007,
+    "D only (structure)": 0.8118104482533025,
+    "Conf x D": 0.8647744194394802,
+    "Sheaf-tree x D (chain-only)": 0.8053578378560202,
+    "Sheaf-DAG (no D)": 0.7126857252573799,
+    "Sheaf-DAG x D": 0.8052536711893535,
+    "Sheaf-DAG+Conf x D": 0.8254096881881654,
+    "Sheaf edge->upstream x D": 0.8037540426294715,
+    "Naive incident energy x D": 0.8124856531713351,
+    "Truth-greedy (ceiling)": 0.9688342800163952
+   },
+   "10": {
+    "Random": 0.770567417375681,
+    "Uncertainty (repo)": 0.8494394810160935,
+    "Dependency-aware (repo)": 0.8125843006182996,
+    "D only (structure)": 0.8722482010379521,
+    "Conf x D": 0.9212528051254161,
+    "Sheaf-tree x D (chain-only)": 0.8659390653888625,
+    "Sheaf-DAG (no D)": 0.7710340663207431,
+    "Sheaf-DAG x D": 0.8674647220093312,
+    "Sheaf-DAG+Conf x D": 0.8900737624022232,
+    "Sheaf edge->upstream x D": 0.8643088710168004,
+    "Naive incident energy x D": 0.8732995989034439,
+    "Truth-greedy (ceiling)": 0.9945576298701301
+   },
+   "20": {
+    "Random": 0.8615570746655198,
+    "Uncertainty (repo)": 0.937536975774062,
+    "Dependency-aware (repo)": 0.906116498377539,
+    "D only (structure)": 0.9338477627060675,
+    "Conf x D": 0.9580678538797234,
+    "Sheaf-tree x D (chain-only)": 0.9337667414610513,
+    "Sheaf-DAG (no D)": 0.8612851369798057,
+    "Sheaf-DAG x D": 0.9320247626800022,
+    "Sheaf-DAG+Conf x D": 0.9446918766231863,
+    "Sheaf edge->upstream x D": 0.9229097914824209,
+    "Naive incident energy x D": 0.9377954112130419,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "30": {
+    "Random": 0.9113506989446202,
+    "Uncertainty (repo)": 0.9785354889723008,
+    "Dependency-aware (repo)": 0.9577837394438977,
+    "D only (structure)": 0.9609679758770902,
+    "Conf x D": 0.9755464365987356,
+    "Sheaf-tree x D (chain-only)": 0.9666568491793366,
+    "Sheaf-DAG (no D)": 0.9219706948867266,
+    "Sheaf-DAG x D": 0.9650176308223262,
+    "Sheaf-DAG+Conf x D": 0.9692440122990371,
+    "Sheaf edge->upstream x D": 0.9587285308302433,
+    "Naive incident energy x D": 0.9647977638595198,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "40": {
+    "Random": 0.9427239539457396,
+    "Uncertainty (repo)": 0.9921826880289869,
+    "Dependency-aware (repo)": 0.9836437127081503,
+    "D only (structure)": 0.9719682982229856,
+    "Conf x D": 0.9893486330443534,
+    "Sheaf-tree x D (chain-only)": 0.990663336663337,
+    "Sheaf-DAG (no D)": 0.9576656703274629,
+    "Sheaf-DAG x D": 0.9892676229472289,
+    "Sheaf-DAG+Conf x D": 0.9927640401265404,
+    "Sheaf edge->upstream x D": 0.9709931062406213,
+    "Naive incident energy x D": 0.9845537295489596,
+    "Truth-greedy (ceiling)": 1.0
+   }
+  },
+  "overconfident": {
+   "5": {
+    "Random": 0.7201068205705522,
+    "Uncertainty (repo)": 0.6695386004970162,
+    "Dependency-aware (repo)": 0.7137064528826457,
+    "D only (structure)": 0.8168937539411768,
+    "Conf x D": 0.7939476851557415,
+    "Sheaf-tree x D (chain-only)": 0.8099811296727886,
+    "Sheaf-DAG (no D)": 0.7316851870301417,
+    "Sheaf-DAG x D": 0.8082214465741971,
+    "Sheaf-DAG+Conf x D": 0.8108235592502535,
+    "Sheaf edge->upstream x D": 0.8090779729789288,
+    "Naive incident energy x D": 0.8167564588592094,
+    "Truth-greedy (ceiling)": 0.968404451178337
+   },
+   "10": {
+    "Random": 0.7730767127116345,
+    "Uncertainty (repo)": 0.7152912330807192,
+    "Dependency-aware (repo)": 0.7551158681917165,
+    "D only (structure)": 0.873405641852679,
+    "Conf x D": 0.8554096515699322,
+    "Sheaf-tree x D (chain-only)": 0.8679747872535253,
+    "Sheaf-DAG (no D)": 0.7876821069238791,
+    "Sheaf-DAG x D": 0.8696028577644516,
+    "Sheaf-DAG+Conf x D": 0.8661348169145526,
+    "Sheaf edge->upstream x D": 0.86585472700215,
+    "Naive incident energy x D": 0.8746877479634141,
+    "Truth-greedy (ceiling)": 0.9944350649350651
+   },
+   "20": {
+    "Random": 0.8650365394671832,
+    "Uncertainty (repo)": 0.8008887654571546,
+    "Dependency-aware (repo)": 0.8173636219202289,
+    "D only (structure)": 0.9345316320079565,
+    "Conf x D": 0.9165536570243098,
+    "Sheaf-tree x D (chain-only)": 0.9324378393523,
+    "Sheaf-DAG (no D)": 0.871190672577752,
+    "Sheaf-DAG x D": 0.9308213872059027,
+    "Sheaf-DAG+Conf x D": 0.9307616477934562,
+    "Sheaf edge->upstream x D": 0.924245543311661,
+    "Naive incident energy x D": 0.936143846521862,
+    "Truth-greedy (ceiling)": 0.9999375
+   },
+   "30": {
+    "Random": 0.9134216879439431,
+    "Uncertainty (repo)": 0.8623020479178447,
+    "Dependency-aware (repo)": 0.86023451811591,
+    "D only (structure)": 0.9590203573612783,
+    "Conf x D": 0.9421488910423784,
+    "Sheaf-tree x D (chain-only)": 0.9653709129382697,
+    "Sheaf-DAG (no D)": 0.9246054985180588,
+    "Sheaf-DAG x D": 0.9647245906777002,
+    "Sheaf-DAG+Conf x D": 0.9610126169395384,
+    "Sheaf edge->upstream x D": 0.9566267255740449,
+    "Naive incident energy x D": 0.9636513028956709,
+    "Truth-greedy (ceiling)": 1.0
+   },
+   "40": {
+    "Random": 0.9431366773621143,
+    "Uncertainty (repo)": 0.9097673506362024,
+    "Dependency-aware (repo)": 0.9009124043699325,
+    "D only (structure)": 0.9708268316655188,
+    "Conf x D": 0.9556640953285086,
+    "Sheaf-tree x D (chain-only)": 0.9901688090665202,
+    "Sheaf-DAG (no D)": 0.9609220086408631,
+    "Sheaf-DAG x D": 0.9884130845279014,
+    "Sheaf-DAG+Conf x D": 0.9776101032484457,
+    "Sheaf edge->upstream x D": 0.9706432531353201,
+    "Naive incident energy x D": 0.9849866257656776,
+    "Truth-greedy (ceiling)": 1.0
+   }
+  }
+ },
+ "seconds": 56.586323976516724
+}

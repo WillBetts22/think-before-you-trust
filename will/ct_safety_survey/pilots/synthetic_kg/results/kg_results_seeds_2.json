@@ -1,0 +1,487 @@
+{
+ "args": {
+  "seeds": [
+   2
+  ],
+  "n_ent": 1000,
+  "n_rel": 6,
+  "train_2hop": 0.3,
+  "steps": 6000,
+  "zipf": 1.0,
+  "quick": false,
+  "threads": 1,
+  "out": "/home/user/think-before-you-trust/will/ct_safety_survey/pilots/synthetic_kg/results"
+ },
+ "checkpoints": [
+  750,
+  1500,
+  3000,
+  6000
+ ],
+ "runs": [
+  {
+   "seed": 2,
+   "step": 750,
+   "composition": {
+    "n_test": 6000,
+    "direct_error_rate": 0.605,
+    "stepwise_error_rate": 0.8366666666666667,
+    "hop1_error_rate": 0.5963333333333334,
+    "hop2_error_rate_given_bridge": 0.5298333333333334,
+    "compositionality_gap": 0.29365079365079366,
+    "mean_delta_exact": 0.7024089097976685,
+    "single_auroc": {
+     "neg_conf_direct": 0.9106954469900383,
+     "entropy_direct": 0.8963993792935105,
+     "neg_conf_hop1": 0.7648558659088003,
+     "neg_conf_hop2": 0.4839974544059699,
+     "delta_comp_exact": 0.34225238576792083,
+     "delta_comp_N3": 0.5773630435540676,
+     "delta_comp_N10": 0.5435029233648336,
+     "selfcons_3N_N3": 0.8338818565400844
+    },
+    "h1_exact": {
+     "auc_base": 0.9125244388650603,
+     "auc_aug": 0.9173078890167498,
+     "gain": 0.004783450151689461,
+     "ci95": [
+      0.0016795794378572648,
+      0.007583549122542617
+     ]
+    },
+    "h1_N3_vs_selfcons": {
+     "auc_base": 0.9124298218084179,
+     "auc_aug": 0.9130713347514269,
+     "gain": 0.0006415129430089594,
+     "ci95": [
+      -0.0003877413091557202,
+      0.0017187294382603985
+     ]
+    },
+    "frac_wrong_among_agreeing": 0.0,
+    "frac_agreeing": 0.0028333333333333335
+   },
+   "composition_heldout": {
+    "n_test": 3000,
+    "direct_error_rate": 0.9986666666666667,
+    "stepwise_error_rate": 0.8366666666666667,
+    "hop1_error_rate": 0.5943333333333334,
+    "hop2_error_rate_given_bridge": 0.5596666666666666,
+    "compositionality_gap": 0.997979797979798,
+    "mean_delta_exact": 0.7175536155700684,
+    "single_auroc": {
+     "neg_conf_direct": 0.5789385847797063,
+     "entropy_direct": 0.5862817089452603,
+     "neg_conf_hop1": 0.8278120827770361,
+     "neg_conf_hop2": 0.46849966622162886,
+     "delta_comp_exact": 0.3788384512683578,
+     "delta_comp_N3": 0.4954939919893191,
+     "delta_comp_N10": 0.7204188918558077,
+     "selfcons_3N_N3": 0.5682576769025367
+    },
+    "h1_exact": null,
+    "h1_N3_vs_selfcons": null,
+    "frac_wrong_among_agreeing": NaN,
+    "frac_agreeing": 0.0
+   },
+   "duality": {
+    "fwd_acc": 0.4031666666666667,
+    "inv_acc_trained_pairs": 0.36892247043363996,
+    "inv_acc_untrained_pairs (reversal curse)": 0.0010148849797023004,
+    "chance": 0.001,
+    "mean_roundtrip_trained": 0.12654277682304382,
+    "mean_roundtrip_untrained": 0.0016622747061774135,
+    "auroc_fwd_error_neg_conf_trained": 0.914138523567117,
+    "auroc_fwd_error_one_minus_roundtrip_trained": 0.899896236525191,
+    "h1_roundtrip_trained": {
+     "auc_base": 0.9139090078966826,
+     "auc_aug": 0.9324489478777749,
+     "gain": 0.018539939981092268,
+     "ci95": [
+      0.014916549585315842,
+      0.02259274731930102
+     ]
+    },
+    "auroc_fwd_error_neg_conf_untrained": 0.8970984460894998,
+    "auroc_fwd_error_one_minus_roundtrip_untrained": 0.4472446908851859,
+    "h1_roundtrip_untrained": {
+     "auc_base": 0.8970870132715961,
+     "auc_aug": 0.8972687474395251,
+     "gain": 0.000181734167928993,
+     "ci95": [
+      -0.002141985237280494,
+      0.0024032110996541206
+     ]
+    }
+   },
+   "linear_functor": {
+    "unembedding": {
+     "one_hop_faithfulness_mean": 0.001,
+     "functoriality_defect_mean": 1.1298967483536089,
+     "null_defect_mean": 1.1408289258220612,
+     "composed_map_nn_acc_vs_model_2hop": 0.002,
+     "direct_2hop_map_nn_acc": 0.006500000000000001,
+     "null_composed_nn_acc": 0.0011250000000000001,
+     "chance": 0.001
+    },
+    "input_embedding": {
+     "one_hop_faithfulness_mean": 0.004333333333333334,
+     "functoriality_defect_mean": 1.1373071983522964,
+     "null_defect_mean": 1.1415280578336695,
+     "composed_map_nn_acc_vs_model_2hop": 0.0017499999999999998,
+     "direct_2hop_map_nn_acc": 0.02525,
+     "null_composed_nn_acc": 0.0018750000000000001,
+     "chance": 0.001
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "step": 1500,
+   "composition": {
+    "n_test": 6000,
+    "direct_error_rate": 0.29583333333333334,
+    "stepwise_error_rate": 0.47333333333333333,
+    "hop1_error_rate": 0.2745,
+    "hop2_error_rate_given_bridge": 0.272,
+    "compositionality_gap": 0.2219074598677998,
+    "mean_delta_exact": 0.7021687626838684,
+    "single_auroc": {
+     "neg_conf_direct": 0.9351496624718727,
+     "entropy_direct": 0.9255891324277024,
+     "neg_conf_hop1": 0.7232157346445537,
+     "neg_conf_hop2": 0.5057208767397283,
+     "delta_comp_exact": 0.6687051254271189,
+     "delta_comp_N3": 0.7223313276106341,
+     "delta_comp_N10": 0.7173301775147929,
+     "selfcons_3N_N3": 0.8976530044170348
+    },
+    "h1_exact": {
+     "auc_base": 0.9353302108509041,
+     "auc_aug": 0.9531607633969497,
+     "gain": 0.017830552546045597,
+     "ci95": [
+      0.014731765047373996,
+      0.02111529535030019
+     ]
+    },
+    "h1_N3_vs_selfcons": {
+     "auc_base": 0.9352299358279856,
+     "auc_aug": 0.9416990082506876,
+     "gain": 0.006469072422702005,
+     "ci95": [
+      0.004411108690252796,
+      0.008618826873212523
+     ]
+    },
+    "frac_wrong_among_agreeing": 0.0,
+    "frac_agreeing": 0.04133333333333333
+   },
+   "composition_heldout": {
+    "n_test": 3000,
+    "direct_error_rate": 0.998,
+    "stepwise_error_rate": 0.4653333333333333,
+    "hop1_error_rate": 0.257,
+    "hop2_error_rate_given_bridge": 0.2856666666666667,
+    "compositionality_gap": 0.998745294855709,
+    "mean_delta_exact": 0.9010277390480042,
+    "single_auroc": {
+     "neg_conf_direct": 0.4684925406368292,
+     "entropy_direct": 0.4506234691605434,
+     "neg_conf_hop1": 0.4909541304831886,
+     "neg_conf_hop2": 0.39220106880427524,
+     "delta_comp_exact": 0.8066132264529058,
+     "delta_comp_N3": 0.5792696504119349,
+     "delta_comp_N10": 0.6977009574704965,
+     "selfcons_3N_N3": 0.5383823201959475
+    },
+    "h1_exact": null,
+    "h1_N3_vs_selfcons": null,
+    "frac_wrong_among_agreeing": NaN,
+    "frac_agreeing": 0.0
+   },
+   "duality": {
+    "fwd_acc": 0.7233333333333334,
+    "inv_acc_trained_pairs": 0.6823258869908015,
+    "inv_acc_untrained_pairs (reversal curse)": 0.0006765899864682003,
+    "chance": 0.001,
+    "mean_roundtrip_trained": 0.3486589193344116,
+    "mean_roundtrip_untrained": 0.0012425720924511552,
+    "auroc_fwd_error_neg_conf_trained": 0.9334119058959022,
+    "auroc_fwd_error_one_minus_roundtrip_trained": 0.9117764664411743,
+    "h1_roundtrip_trained": {
+     "auc_base": 0.9336922915472606,
+     "auc_aug": 0.9564815637016288,
+     "gain": 0.022789272154368212,
+     "ci95": [
+      0.01786206183805326,
+      0.027533868484492907
+     ]
+    },
+    "auroc_fwd_error_neg_conf_untrained": 0.9337549393523467,
+    "auroc_fwd_error_one_minus_roundtrip_untrained": 0.31103492147181955,
+    "h1_roundtrip_untrained": {
+     "auc_base": 0.933170956751475,
+     "auc_aug": 0.9333652355558867,
+     "gain": 0.0001942788044116961,
+     "ci95": [
+      -0.0010146562757545636,
+      0.0011664965256868664
+     ]
+    }
+   },
+   "linear_functor": {
+    "unembedding": {
+     "one_hop_faithfulness_mean": 0.0016666666666666668,
+     "functoriality_defect_mean": 1.1120826660031038,
+     "null_defect_mean": 1.1316634359158049,
+     "composed_map_nn_acc_vs_model_2hop": 0.0015,
+     "direct_2hop_map_nn_acc": 0.003,
+     "null_composed_nn_acc": 0.001,
+     "chance": 0.001
+    },
+    "input_embedding": {
+     "one_hop_faithfulness_mean": 0.0013333333333333333,
+     "functoriality_defect_mean": 1.1228384224356682,
+     "null_defect_mean": 1.1374520430653525,
+     "composed_map_nn_acc_vs_model_2hop": 0.00075,
+     "direct_2hop_map_nn_acc": 0.0085,
+     "null_composed_nn_acc": 0.00075,
+     "chance": 0.001
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "step": 3000,
+   "composition": {
+    "n_test": 6000,
+    "direct_error_rate": 0.071,
+    "stepwise_error_rate": 0.1045,
+    "hop1_error_rate": 0.05366666666666667,
+    "hop2_error_rate_given_bridge": 0.056,
+    "compositionality_gap": 0.06844461022006713,
+    "mean_delta_exact": 0.3297043740749359,
+    "single_auroc": {
+     "neg_conf_direct": 0.9484086073672029,
+     "entropy_direct": 0.9427236785140938,
+     "neg_conf_hop1": 0.6273143585830254,
+     "neg_conf_hop2": 0.478032860480669,
+     "delta_comp_exact": 0.9391865485461506,
+     "delta_comp_N3": 0.9004632086262342,
+     "delta_comp_N10": 0.9256796309491924,
+     "selfcons_3N_N3": 0.9296545328663766
+    },
+    "h1_exact": {
+     "auc_base": 0.9483572286487735,
+     "auc_aug": 0.9881020364502529,
+     "gain": 0.039744807801479376,
+     "ci95": [
+      0.03140536059448435,
+      0.04900981574218767
+     ]
+    },
+    "h1_N3_vs_selfcons": {
+     "auc_base": 0.9485387387114218,
+     "auc_aug": 0.9757357685161321,
+     "gain": 0.027197029804710282,
+     "ci95": [
+      0.01916524313654544,
+      0.035844504695542095
+     ]
+    },
+    "frac_wrong_among_agreeing": 0.0,
+    "frac_agreeing": 0.36033333333333334
+   },
+   "composition_heldout": {
+    "n_test": 3000,
+    "direct_error_rate": 0.999,
+    "stepwise_error_rate": 0.10366666666666667,
+    "hop1_error_rate": 0.04833333333333333,
+    "hop2_error_rate_given_bridge": 0.058333333333333334,
+    "compositionality_gap": 0.999256229081443,
+    "mean_delta_exact": 0.9850934147834778,
+    "single_auroc": {
+     "neg_conf_direct": 0.862084306528751,
+     "entropy_direct": 0.8205983761539317,
+     "neg_conf_hop1": 0.7389611834056278,
+     "neg_conf_hop2": 0.3417862306751196,
+     "delta_comp_exact": 0.9998887776665555,
+     "delta_comp_N3": 0.8323323323323324,
+     "delta_comp_N10": 0.999777555333111,
+     "selfcons_3N_N3": 0.8734289845400957
+    },
+    "h1_exact": null,
+    "h1_N3_vs_selfcons": null,
+    "frac_wrong_among_agreeing": 0.0,
+    "frac_agreeing": 0.0006666666666666666
+   },
+   "duality": {
+    "fwd_acc": 0.9465,
+    "inv_acc_trained_pairs": 0.9359395532194481,
+    "inv_acc_untrained_pairs (reversal curse)": 0.0020297699594046007,
+    "chance": 0.001,
+    "mean_roundtrip_trained": 0.740548849105835,
+    "mean_roundtrip_untrained": 0.0011917726369574666,
+    "auroc_fwd_error_neg_conf_trained": 0.9645440435913756,
+    "auroc_fwd_error_one_minus_roundtrip_trained": 0.9687178284706172,
+    "h1_roundtrip_trained": {
+     "auc_base": 0.9639477886086266,
+     "auc_aug": 0.989354503734968,
+     "gain": 0.025406715126341406,
+     "ci95": [
+      0.01665514237485822,
+      0.03871711866908282
+     ]
+    },
+    "auroc_fwd_error_neg_conf_untrained": 0.9662736969382908,
+    "auroc_fwd_error_one_minus_roundtrip_untrained": 0.26417066113918036,
+    "h1_roundtrip_untrained": {
+     "auc_base": 0.9664054065725266,
+     "auc_aug": 0.9663060845532668,
+     "gain": -9.932201925977324e-05,
+     "ci95": [
+      -0.00033648355688652707,
+      6.66208582721955e-05
+     ]
+    }
+   },
+   "linear_functor": {
+    "unembedding": {
+     "one_hop_faithfulness_mean": 0.0,
+     "functoriality_defect_mean": 1.0995724412518755,
+     "null_defect_mean": 1.1315506981235535,
+     "composed_map_nn_acc_vs_model_2hop": 0.0016250000000000001,
+     "direct_2hop_map_nn_acc": 0.002875,
+     "null_composed_nn_acc": 0.0016250000000000001,
+     "chance": 0.001
+    },
+    "input_embedding": {
+     "one_hop_faithfulness_mean": 0.0,
+     "functoriality_defect_mean": 1.1101137148428946,
+     "null_defect_mean": 1.139777858163606,
+     "composed_map_nn_acc_vs_model_2hop": 0.001,
+     "direct_2hop_map_nn_acc": 0.003,
+     "null_composed_nn_acc": 0.000875,
+     "chance": 0.001
+    }
+   }
+  },
+  {
+   "seed": 2,
+   "step": 6000,
+   "composition": {
+    "n_test": 6000,
+    "direct_error_rate": 0.0625,
+    "stepwise_error_rate": 0.12616666666666668,
+    "hop1_error_rate": 0.0615,
+    "hop2_error_rate_given_bridge": 0.06716666666666667,
+    "compositionality_gap": 0.0583301563095692,
+    "mean_delta_exact": 0.2693993151187897,
+    "single_auroc": {
+     "neg_conf_direct": 0.9381655703703703,
+     "entropy_direct": 0.9320609185185186,
+     "neg_conf_hop1": 0.6091015111111111,
+     "neg_conf_hop2": 0.5147278222222222,
+     "delta_comp_exact": 0.9381060740740741,
+     "delta_comp_N3": 0.9046762666666666,
+     "delta_comp_N10": 0.929791762962963,
+     "selfcons_3N_N3": 0.9060406518518519
+    },
+    "h1_exact": {
+     "auc_base": 0.9365300148148148,
+     "auc_aug": 0.9841867851851852,
+     "gain": 0.047656770370370416,
+     "ci95": [
+      0.03687770248884987,
+      0.059370647184775104
+     ]
+    },
+    "h1_N3_vs_selfcons": {
+     "auc_base": 0.9364769185185184,
+     "auc_aug": 0.9699465481481482,
+     "gain": 0.03346962962962974,
+     "ci95": [
+      0.022672088464866562,
+      0.04538595331132122
+     ]
+    },
+    "frac_wrong_among_agreeing": 0.0,
+    "frac_agreeing": 0.5068333333333334
+   },
+   "composition_heldout": {
+    "n_test": 3000,
+    "direct_error_rate": 0.999,
+    "stepwise_error_rate": 0.13266666666666665,
+    "hop1_error_rate": 0.072,
+    "hop2_error_rate_given_bridge": 0.06733333333333333,
+    "compositionality_gap": 0.9988457098884186,
+    "mean_delta_exact": 0.9956808090209961,
+    "single_auroc": {
+     "neg_conf_direct": 0.6880213546880214,
+     "entropy_direct": 0.6387498609720832,
+     "neg_conf_hop1": 0.6136136136136136,
+     "neg_conf_hop2": 0.7921254587921254,
+     "delta_comp_exact": 1.0,
+     "delta_comp_N3": 0.9993882771660549,
+     "delta_comp_N10": 0.9998887776665555,
+     "selfcons_3N_N3": 0.6781225670114559
+    },
+    "h1_exact": null,
+    "h1_N3_vs_selfcons": null,
+    "frac_wrong_among_agreeing": 0.0,
+    "frac_agreeing": 0.0003333333333333333
+   },
+   "duality": {
+    "fwd_acc": 0.9348333333333333,
+    "inv_acc_trained_pairs": 0.9293692509855453,
+    "inv_acc_untrained_pairs (reversal curse)": 0.00033829499323410016,
+    "chance": 0.001,
+    "mean_roundtrip_trained": 0.7991748452186584,
+    "mean_roundtrip_untrained": 0.0006221777875907719,
+    "auroc_fwd_error_neg_conf_trained": 0.95557691161571,
+    "auroc_fwd_error_one_minus_roundtrip_trained": 0.9631552088920674,
+    "h1_roundtrip_trained": {
+     "auc_base": 0.9544389564336372,
+     "auc_aug": 0.9859627361582932,
+     "gain": 0.03152377972465603,
+     "ci95": [
+      0.022580459158836757,
+      0.04296979953146488
+     ]
+    },
+    "auroc_fwd_error_neg_conf_untrained": 0.9455640868269098,
+    "auroc_fwd_error_one_minus_roundtrip_untrained": 0.25058467341494006,
+    "h1_roundtrip_untrained": {
+     "auc_base": 0.9445083643638199,
+     "auc_aug": 0.9448501321442438,
+     "gain": 0.0003417677804239405,
+     "ci95": [
+      -0.000994543275891538,
+      0.002257912203405768
+     ]
+    }
+   },
+   "linear_functor": {
+    "unembedding": {
+     "one_hop_faithfulness_mean": 0.0013333333333333333,
+     "functoriality_defect_mean": 1.1071341619146802,
+     "null_defect_mean": 1.1366853773575696,
+     "composed_map_nn_acc_vs_model_2hop": 0.00125,
+     "direct_2hop_map_nn_acc": 0.002625,
+     "null_composed_nn_acc": 0.00075,
+     "chance": 0.001
+    },
+    "input_embedding": {
+     "one_hop_faithfulness_mean": 0.0006666666666666666,
+     "functoriality_defect_mean": 1.1084103550305615,
+     "null_defect_mean": 1.1382378780081144,
+     "composed_map_nn_acc_vs_model_2hop": 0.001,
+     "direct_2hop_map_nn_acc": 0.006625000000000001,
+     "null_composed_nn_acc": 0.00125,
+     "chance": 0.001
+    }
+   }
+  }
+ ]
+}

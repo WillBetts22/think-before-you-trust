@@ -1,0 +1,5 @@
+seed=2 step=750 t=415s fwd_acc=0.403 direct_err=0.605 step_err=0.837 AUROC conf=0.911 dcomp=0.342 h1=0.005 rev_untrained=0.001
+seed=2 step=1500 t=471s fwd_acc=0.723 direct_err=0.296 step_err=0.473 AUROC conf=0.935 dcomp=0.669 h1=0.018 rev_untrained=0.001
+seed=2 step=3000 t=541s fwd_acc=0.947 direct_err=0.071 step_err=0.104 AUROC conf=0.948 dcomp=0.939 h1=0.04 rev_untrained=0.002
+seed=2 step=6000 t=609s fwd_acc=0.935 direct_err=0.062 step_err=0.126 AUROC conf=0.938 dcomp=0.938 h1=0.048 rev_untrained=0.000
+done in 609.3 s
